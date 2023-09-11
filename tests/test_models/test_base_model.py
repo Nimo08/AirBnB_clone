@@ -19,7 +19,7 @@ class test_base(unittest.TestCase):
 		"""testing instances"""
 		my_model = BaseModel()
 		self.assertEqual(type(my_model), BaseModel)
-		d = datetime.datetime.now().replace(microsecond=0)
+		d = datetime.now().replace(microsecond=0)
 		self.assertEqual(my_model.created_at.replace(microsecond=0), d)
 		self.assertEqual(my_model.updated_at.replace(microsecond=0), d)
 		my_model.name = "My First Model"
