@@ -13,13 +13,13 @@ import os
 
 
 class test_base(unittest.TestCase):
-    """class for testing the base"""
-
-	def test_inst(self):
+	"""class for testing the base"""
+	
+	def test_inist(self):
 		"""testing instances"""
 		my_model = BaseModel()
 		self.assertEqual(type(my_model), BaseModel)
-		d = datetime.datetime.now().replace(microsecond=0)
+		d = datetime.now().replace(microsecond=0)
 		self.assertEqual(my_model.created_at.replace(microsecond=0), d)
 		self.assertEqual(my_model.updated_at.replace(microsecond=0), d)
 		my_model.name = "My First Model"
@@ -27,14 +27,13 @@ class test_base(unittest.TestCase):
 		self.assertEqual(my_model.name, "My First Model")
 		self.assertEqual(my_model.my_number, 89)
 		self.assertEqual(type(my_model.id), type(uuid))
-	
 	def test_str(self):
 		"""should print: [<class name>] (<self.id>) <self.__dict__>"""
 		my_model = BaseModel()
 		rep = str(my_model)
-		class_name = re.search("\[.*\]", rep)
-		self_id = re.search("\(.*\)", rep)
-		self_dict = re.search("\{.*\}", rep)
+		class_name = re.search("\[.*\]", rep).group(0)
+		self_id = re.search("\(.*\)", rep).group(0)
+		self_dict = re.search("\{.*\}", rep).group(0)
 		self.assertEqual(class_name, "[BaseModel]")
 		self.assertTrue(len(self_id) == 38)
 		from_js_dict = json.loads(self_dict)
