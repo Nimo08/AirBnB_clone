@@ -37,8 +37,13 @@ class HBNBCommand(cmd.Cmd):
         if len(args) < 2:
             print("** instance id missing **")
             return
-        if f"{__class__.__name__}.{id}" in storage._FileStorage__objects:
-            print(obj)
+        id = args[1]
+        ##getting the list of all objects
+        dictionary = storage.all()
+        key = f"{cls_name}.{id}"
+        if key in dictionary:
+            ##dictionary[key] is an object
+            print(dictionary[key])
         else:
             print("** no instance found **")
             return
@@ -57,8 +62,15 @@ class HBNBCommand(cmd.Cmd):
         if len(args) < 2:
             print("** instance id missing **")
             return
-        if f"{__class__.__name__}.{id}"in storage._FileStorage__objects:
-            del(obj)
+        ##getting the list of all objects
+        id = args[1]
+        dictionary = storage.all()
+        key = f"{cls_name}.{id}"
+        if key in dictionary:
+            ##dictionary[key] is the object
+            del(dictionary[key])
+            ##now delete the key from the dictionary
+            dictionary.pop(key)
         else:
             print("** no instance found **")
             return
@@ -67,15 +79,20 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of
         all instances based or not on the class name"""
         args = line.split()
-        cls_name = args[0]
-        if cls_name not in globals():
-            print("** class doesn't exist **")
-            return
-        ##getting the list of all objects
-        dictionary = storage.all()
-        for key in dictionary:
-            ##dictionary[key] is an object
-            if dictionary[key].__class__.__name__ == cls_name:
+        if len(args) == 1:
+            cls_name = args[0]
+            if cls_name not in globals():
+                print("** class doesn't exist **")
+                return
+            ##getting the list of all objects
+            dictionary = storage.all()
+            for key in dictionary:
+                ##dictionary[key] is an object
+                if dictionary[key].__class__.__name__ == cls_name:
+                    print(dictionary[key])
+        else:
+            dictionary = storage.all()
+            for key in dictionary:
                 print(dictionary[key])
     
     def do_EOF(self, line):
