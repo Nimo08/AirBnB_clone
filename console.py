@@ -4,6 +4,7 @@ from models import storage
 from models.base_model import BaseModel
 import models
 import cmd
+import shlex
 
 class HBNBCommand(cmd.Cmd):
 
@@ -71,6 +72,7 @@ class HBNBCommand(cmd.Cmd):
             del(dictionary[key])
             ##now delete the key from the dictionary
             dictionary.pop(key)
+            storage.save()
         else:
             print("** no instance found **")
             return
@@ -94,6 +96,50 @@ class HBNBCommand(cmd.Cmd):
             dictionary = storage.all()
             for key in dictionary:
                 print(dictionary[key])
+    
+    def do_update(self, line):
+        """updates obj
+        update <class name> <id> <attribute name> "<attribute value>"""
+
+        args = shlex.split(line)
+        if not args:
+            print("** class name missing **")
+            return
+        cls_name = args[0]
+        cls_list = ["BaseModel"]
+        if cls_name not in cls_list:
+            print("** class doesn't exist **")
+            return
+        if len(args) == 1:
+            print("** instance id missing **")
+        id = args[1]
+        dictionary = storage.all()
+        key = f"{cls_name}.{id}"
+        if key not in dictionary:
+            print("** no instance found **")
+            return
+        if len(args) == 2:
+            print("** attribute name missing **")
+            return
+        if len(args) == 3:
+            print("** value missing **")
+            return
+        obj = dictionary[key]
+        attr = args[2]
+        val = args[3]
+        if hasattr(obj, attr):
+            value = getattr(obj, attr)
+            if type(value) is int or type(value) is float:
+                if int(val) == float(val):
+                    setattr(obj, attr, int(val))
+                else:
+                    setattr(obj, attr, float(val))
+            else:
+                setattr(obj, attr, val)
+        else:
+            setattr(obj, attr, val)
+        obj.save()
+        
     
     def do_EOF(self, line):
         """quit the program"""
