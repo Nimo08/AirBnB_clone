@@ -34,7 +34,7 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(my_model.number_rooms, 0)
         self.assertEqual(my_model.number_bathrooms, 0)
         self.assertEqual(my_model.max_guest, 0)
-        self.assertEqual(price_by_night, 0)
+        self.assertEqual(my_model.price_by_night, 0)
         self.assertEqual(my_model.latitude, 0.0)
         self.assertEqual(my_model.longitude, 0.0)
         self.assertEqual(my_model.amenity_ids, [])
@@ -56,6 +56,7 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(my_model.description, "Modern")
         self.assertEqual(my_model.number_rooms, 2)
         self.assertEqual(my_model.number_bathrooms, 2)
+        self.assertEqual(my_model.max_guest, 2)
         self.assertEqual(my_model.price_by_night, 100)
         self.assertEqual(my_model.latitude, 3.4)
         self.assertEqual(my_model.longitude, 4.5)
@@ -68,9 +69,9 @@ class TestPlace(unittest.TestCase):
         my_model = Place()
         rep = str(my_model)
         class_name = re.search("\[.*\]", rep).group(0)
-        self_id = re.search("\[.{36}\]", rep).group(0)
+        self_id = re.search("\(.{36}\)", rep).group(0)
         self_dict = re.search("\{.*\}", rep).group(0)
-        self.assertEqual(class_name, "[State]")
+        self.assertEqual(class_name, "[Place]")
         self.assertTrue(len(self_id) == 38)
         inst_dict = my_model.__dict__
         self.assertEqual(str(inst_dict), self_dict)
@@ -83,7 +84,7 @@ class TestPlace(unittest.TestCase):
         my_model.name = "Westlands"
         rep = str(my_model)
         class_name = re.search("\[.*\]", rep).group(0)
-        self_id = re.search("\[.{36}\]", rep).group(0)
+        self_id = re.search("\(.{36}\)", rep).group(0)
         self_dict = re.search("\{.*\}", rep).group(0)
         self.assertEqual(class_name, "[Place]")
         self.assertTrue(len(self_id) == 38)
@@ -113,7 +114,7 @@ class TestPlace(unittest.TestCase):
         """
         Testing dict.
         """
-        my_model = State()
+        my_model = Place()
         my_model_json = my_model.__dict__.copy()
         my_model_json["__class__"] = "Place"
         my_model_json["created_at"] = my_model.created_at.isoformat()
@@ -129,8 +130,8 @@ class TestPlace(unittest.TestCase):
         my_model_json = my_model.__dict__.copy()
         my_model_json["created_at"] = my_model.created_at.isoformat()
         my_model_json["updated_at"] = my_model.updated_at.isoformat()
-        my_new_model = State(**my_model_json)
-        self.assertTrue(type(my_new_model) is str)
+        my_new_model = Place(**my_model_json)
+        self.assertTrue(type(my_new_model.id) is str)
         self.assertEqual(my_model.id, my_new_model.id)
         self.assertEqual(my_model.created_at, my_new_model.created_at)
         self.assertEqual(my_model.updated_at, my_new_model.updated_at)
