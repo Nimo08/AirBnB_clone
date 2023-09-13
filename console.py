@@ -21,11 +21,14 @@ class HBNBCommand(cmd.Cmd):
     def precmd(self, line):
         """modify user input"""
         """User.all() -> all User"""
-        line  = re.sub(r"\(\)$", "", line)
-        args = line.split('.')
-        if len(args) == 2:
-            return f"{args[1]} {args[0]}"
-        return line
+        lexer = shlex.shlex(line, posix=False, punctuation_chars="()")
+        tokens = list(lexer)
+        if len(tokens) == 2 and tokens[1] == "()":
+            args = tokens[0].split('.')
+            if len(args) == 2:
+                return f"{args[1]} {args[0]}"
+        else:
+            return line
 
 
 
