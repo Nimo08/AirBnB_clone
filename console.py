@@ -11,6 +11,7 @@ from models.review import Review
 import models
 import cmd
 import shlex
+import re
 
 
 class HBNBCommand(cmd.Cmd):
@@ -20,13 +21,12 @@ class HBNBCommand(cmd.Cmd):
     def precmd(self, line):
         """modify user input"""
         """User.all() -> all User"""
-        if "." in line:
-            args = line.split(".")
-            command = args[1]
-            string = command.replace("()", "")
-            if len(args) == 2:
-                return f"{args[1]} {args[0]}"
+        line  = re.sub(r"\(\)$", "", line)
+        args = line.split('.')
+        if len(args) == 2:
+            return f"{args[1]} {args[0]}"
         return line
+
 
 
     def do_create(self, line):
