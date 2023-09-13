@@ -17,6 +17,18 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
 
+    def precmd(self, line):
+        """modify user input"""
+        """User.all() -> all User"""
+        if "." in line:
+            args = line.split(".")
+            command = args[1]
+            string = command.replace("()", "")
+            if len(args) == 2:
+                return f"{args[1]} {args[0]}"
+        return line
+
+
     def do_create(self, line):
         """creates a new instance of BaseModel"""
         args = line.split()
