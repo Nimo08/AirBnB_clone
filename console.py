@@ -145,11 +145,10 @@ class HBNBCommand(cmd.Cmd):
         val = args[3]
         if hasattr(obj, attr):
             value = getattr(obj, attr)
-            if type(value) is int or type(value) is float:
-                if int(val) == float(val):
-                    setattr(obj, attr, int(val))
-                else:
-                    setattr(obj, attr, float(val))
+            if type(value) is int:
+                setattr(obj, attr, int(val))
+            elif type(value) is float:
+                setattr(obj, attr, float(val))
             else:
                 setattr(obj, attr, val)
         else:
