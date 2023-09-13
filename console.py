@@ -11,11 +11,26 @@ from models.review import Review
 import models
 import cmd
 import shlex
+import re
 
 
 class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
+
+    def precmd(self, line):
+        """modify user input"""
+        """User.all() -> all User"""
+        lexer = shlex.shlex(line, posix=False, punctuation_chars="()")
+        tokens = list(lexer)
+        if len(tokens) == 2 and tokens[1] == "()":
+            args = tokens[0].split('.')
+            if len(args) == 2:
+                return f"{args[1]} {args[0]}"
+        else:
+            return line
+
+
 
     def do_create(self, line):
         """creates a new instance of BaseModel"""
