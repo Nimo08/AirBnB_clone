@@ -39,8 +39,8 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(my_model.longitude, 0.0)
         self.assertEqual(my_model.amenity_ids, [])
         self.assertTrue(type(my_model.id) is str)
-        my_model.city_id = "City.2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4"
-        my_model.user_id = "User.fce12f8a-fdb6-439a-afe8-2881754de71c"
+        my_model.city_id = "City_id"
+        my_model.user_id = "User_id"
         my_model.name = "Westlands"
         my_model.description = "Modern"
         my_model.number_rooms = 2
@@ -49,9 +49,9 @@ class TestPlace(unittest.TestCase):
         my_model.price_by_night = 100
         my_model.latitude = 3.4
         my_model.lomgitude = 4.5
-        my_model.amenity_ids = "Amenity.38a22b25-ae9c-4fa9-9f94-59b3eb51bfba"
-        self.assertEqual(my_model.city_id, "City.2bf3ebfd-a220-49ee-9ae6-b01c75f6f6a4")
-        self.assertEqual(my_model.user_id, "User.fce12f8a-fdb6-439a-afe8-2881754de71c")
+        my_model.amenity_ids = "Amenity_id"
+        self.assertEqual(my_model.city_id, "City_id")
+        self.assertEqual(my_model.user_id, "User_id")
         self.assertEqual(my_model.name, "Westlands")
         self.assertEqual(my_model.description, "Modern")
         self.assertEqual(my_model.number_rooms, 2)
@@ -59,7 +59,7 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(my_model.price_by_night, 100)
         self.assertEqual(my_model.latitude, 3.4)
         self.assertEqual(my_model.longitude, 4.5)
-        self.assertEqual(my_model.amenity_id, "Amenity.38a22b25-ae9c-4fa9-9f94-59b3eb51bfba")
+        self.assertEqual(my_model.amenity_id, "Amenity_id")
 
     def test_str(self):
         """
