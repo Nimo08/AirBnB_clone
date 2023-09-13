@@ -48,7 +48,7 @@ class TestPlace(unittest.TestCase):
         my_model.max_guest = 2
         my_model.price_by_night = 100
         my_model.latitude = 3.4
-        my_model.lomgitude = 4.5
+        my_model.longitude = 4.5
         my_model.amenity_ids = "Amenity_id"
         self.assertEqual(my_model.city_id, "City_id")
         self.assertEqual(my_model.user_id, "User_id")
@@ -60,7 +60,7 @@ class TestPlace(unittest.TestCase):
         self.assertEqual(my_model.price_by_night, 100)
         self.assertEqual(my_model.latitude, 3.4)
         self.assertEqual(my_model.longitude, 4.5)
-        self.assertEqual(my_model.amenity_id, "Amenity_id")
+        self.assertEqual(my_model.amenity_ids, "Amenity_id")
 
     def test_str(self):
         """
