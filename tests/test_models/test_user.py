@@ -10,6 +10,7 @@ from datetime import datetime
 import uuid
 import re
 import os
+import models
 
 
 class test_base(unittest.TestCase):
@@ -106,6 +107,14 @@ class test_base(unittest.TestCase):
         self.assertEqual(my_model.created_at, my_new_model.created_at)
         self.assertEqual(my_model.updated_at, my_new_model.updated_at)
         self.assertTrue(my_model is not my_new_model)
+
+    def tearDown(self):
+        """deallocating resources"""
+        models.storage._FileStorage__objects = {}
+        try:
+            os.remove("file.json")
+        except Exception:
+            pass
 
 
 if __name__ == '__main__':
