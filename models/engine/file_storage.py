@@ -4,6 +4,7 @@ Module contains storage class.
 """
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -23,7 +24,11 @@ class FileStorage:
 
     def save(self):
         """serializes objescts to the json file"""
-        obj_dict = {}
+        user = {"email": User.email,
+                 "password": User.password,
+                  "first_name": User.first_name,
+                   "last_name": User.last_name}
+        obj_dict = user
         for key, value in self.__objects.items():
             obj_dict[key] = value.to_dict()
         with open(self.__file_path, mode="w+", encoding="utf-8") as myfile:
@@ -38,7 +43,15 @@ class FileStorage:
                 objects_dict = json.loads(str_rep)
                 for key in objects_dict:
                     self.__objects[key] = BaseModel(**objects_dict[key])
+            user = User()
+            user_data = {"email": user._User.email,
+                             "password": user._User.password,
+                              "first_name": user._User.first_name,
+                               "last_name": user._User.last_name}
+            with open(self.__file_path, mode="r", encoding="utf-8") as f:
+                string = f.read()
+                user_dict = json.loads(string)
+                for key in user_dict:
+                    user_data[key] = User(**user_dict[key])
         except Exception:
             pass
-
-

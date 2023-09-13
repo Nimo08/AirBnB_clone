@@ -2,6 +2,7 @@
 """console"""
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 import models
 import cmd
 import shlex
@@ -23,6 +24,9 @@ class HBNBCommand(cmd.Cmd):
         obj = BaseModel()
         models.storage.save()
         print(obj.id)
+        user = User()
+        models.storage.save()
+        print(user.id)
 
     def do_show(self, line):
         """Prints the str rep of an instance based
@@ -106,7 +110,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         cls_name = args[0]
-        cls_list = ["BaseModel"]
+        cls_list = ["User"]
         if cls_name not in cls_list:
             print("** class doesn't exist **")
             return
