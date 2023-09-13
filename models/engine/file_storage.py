@@ -4,6 +4,7 @@ Module contains storage class.
 """
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -36,9 +37,11 @@ class FileStorage:
             with open(self.__file_path, mode="r", encoding="utf-8") as myfile:
                 str_rep = myfile.read()
                 objects_dict = json.loads(str_rep)
+                classes = {"User": User, "BaseModel": BaseModel}
                 for key in objects_dict:
-                    self.__objects[key] = BaseModel(**objects_dict[key])
+                    ##ibjects_dict[key] -> a dictionary -> dictionary[__class__name]
+                    dictionary = objects_dict[key]
+                    cls_name = dictionary["__class__"]
+                    self.__objects[key] = classes[cls_name](**objects_dict[key])
         except Exception:
             pass
-
-

@@ -2,6 +2,7 @@
 """console"""
 from models import storage
 from models.base_model import BaseModel
+from models.user import User
 import models
 import cmd
 import shlex
@@ -17,10 +18,11 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         cls_name = args[0]
-        if cls_name not in globals():
+        classes = {"User": User, "BaseModel": BaseModel}
+        if cls_name not in classes:
             print("** class doesn't exist **")
             return
-        obj = BaseModel()
+        obj = classes[cls_name]()
         models.storage.save()
         print(obj.id)
 
@@ -32,7 +34,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         cls_name = args[0]
-        if cls_name not in globals():
+        classes = ["User", "BaseModel"]
+        if cls_name not in classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
@@ -57,7 +60,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         cls_name = args[0]
-        if cls_name not in globals():
+        classes = ["User", "BaseModel"]
+        if cls_name not in classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
@@ -71,7 +75,6 @@ class HBNBCommand(cmd.Cmd):
             ##dictionary[key] is the object
             del(dictionary[key])
             ##now delete the key from the dictionary
-            dictionary.pop(key)
             storage.save()
         else:
             print("** no instance found **")
@@ -83,7 +86,8 @@ class HBNBCommand(cmd.Cmd):
         args = line.split()
         if len(args) == 1:
             cls_name = args[0]
-            if cls_name not in globals():
+            classes = ["User", "BaseModel"]
+            if cls_name not in classes:
                 print("** class doesn't exist **")
                 return
             ##getting the list of all objects
@@ -106,7 +110,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         cls_name = args[0]
-        cls_list = ["BaseModel"]
+        cls_list = ["User", "BaseModel"]
         if cls_name not in cls_list:
             print("** class doesn't exist **")
             return
