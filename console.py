@@ -12,6 +12,7 @@ import models
 import cmd
 import shlex
 import re
+import json
 
 
 class HBNBCommand(cmd.Cmd):
@@ -25,13 +26,19 @@ class HBNBCommand(cmd.Cmd):
         if len(tokens) == 2 and tokens[1] == "":
             parenthesis = re.search(r'\([^)]*\)', line).group(0)
             args = tokens[0].split('.')
-            cmd = ""
             if len(args) == 2:
                 cmd = f"{args[1]} {args[0]}"
                 if len(parenthesis) > 2:
-                     parenthesis = parenthesis[1:-1].split(",")
+                     tokens = re.split(r'\{[^}]*\}', parenthesis)
+                     if len(tokens) != 1:
+                        diction = re.search(r'\{[^}]*\}', parenthesis).group(0)
+                        parenthesis = tokens[0][1:-2]
+                        cmd = f"{cmd} {(parenthesis)} {diction}"
+                        return cmd
+                     parenthesis = parenthesis[1:-1].split(", ")
                      cmd = f"{cmd} {' '.join(parenthesis)}"
                 return cmd
+            return line
         else:
             return line
 
@@ -163,26 +170,47 @@ class HBNBCommand(cmd.Cmd):
         if key not in dictionary:
             print("** no instance found **")
             return
-        if len(args) == 2:
+        if len(args) < 2:
             print("** attribute name missing **")
             return
-        if len(args) == 3:
-            print("** value missing **")
-            return
         obj = dictionary[key]
-        attr = args[2]
-        val = args[3]
-        if hasattr(obj, attr):
-            value = getattr(obj, attr)
-            if type(value) is int:
-                setattr(obj, attr, int(val))
-            elif type(value) is float:
-                setattr(obj, attr, float(val))
+        try:
+            attr = re.search(r'\{[^}]*\}', line).group(0)
+            attr = re.sub('(?<!\\\\)\'', '\"', attr)
+        except Exception:
+            attr = args[2]
+        try:
+            update_dict = json.loads(attr)
+            if isinstance(update_dict, dict):
+                for attr, val in update_dict.items():
+                    if hasattr(obj, attr):
+                        value = getattr(obj, attr)
+                        if type(value) is int:
+                            setattr(obj, attr, int(val))
+                        elif type(value) is float:
+                            setattr(obj, attr, float(val))
+                        else:
+                            setattr(obj, attr, val)
+                    else:
+                        setattr(obj, attr, val)
+                    obj.save()
+
+        except Exception:
+            if len(args) == 3:
+                print("** value missing **")
+                return
+            val = args[3]
+            if hasattr(obj, attr):
+                value = getattr(obj, attr)
+                if type(value) is int:
+                    setattr(obj, attr, int(val))
+                elif type(value) is float:
+                    setattr(obj, attr, float(val))
+                else:
+                    setattr(obj, attr, val)
             else:
                 setattr(obj, attr, val)
-        else:
-            setattr(obj, attr, val)
-        obj.save()
+            obj.save()
         
     
     def do_EOF(self, line):
