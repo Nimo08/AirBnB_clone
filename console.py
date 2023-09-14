@@ -35,6 +35,16 @@ class HBNBCommand(cmd.Cmd):
         else:
             return line
 
+    def do_count(self, line):
+        """Retrieve the number of instances of a class."""
+        args = line.split()
+        cls_name = args[0]
+        dictionary = storage.all()
+        counter = 0
+        for key in dictionary:
+            if dictionary[key].__class__.__name__ == cls_name:
+                counter += 1
+        print(counter)
 
     def do_create(self, line):
         """creates a new instance of BaseModel"""
