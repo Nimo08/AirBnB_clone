@@ -25,13 +25,19 @@ class HBNBCommand(cmd.Cmd):
         if len(tokens) == 2 and tokens[1] == "":
             parenthesis = re.search(r'\([^)]*\)', line).group(0)
             args = tokens[0].split('.')
-            cmd = ""
             if len(args) == 2:
                 cmd = f"{args[1]} {args[0]}"
                 if len(parenthesis) > 2:
+                     tokens = re.split(r'\{[^}]*\}', parenthesis)
+                     if len(tokens) != 1:
+                        diction = re.search(r'\{[^}]*\}', parenthesis).group(0)
+                        parenthesis = tokens[0][1:-1].split(",")
+                        cmd = f"{cmd} {' '.join(parenthesis)} {diction}"
+                        return cmd
                      parenthesis = parenthesis[1:-1].split(",")
                      cmd = f"{cmd} {' '.join(parenthesis)}"
                 return cmd
+            return line
         else:
             return line
 
