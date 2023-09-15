@@ -49,7 +49,7 @@ class FileStorage:
                     """objects_dict[key] -> a dictionary ->
                     dictionary[__class__name]"""
                     dictionary = objects_dict[key]
-                    cls_name = dictionary["__class__"]
-                    self.__objects[key] = classes[cls_name](**objects_dict[key])
+                    cls = dictionary["__class__"]
+                    self.__objects[key] = classes[cls](**objects_dict[key])
         except Exception:
             pass
