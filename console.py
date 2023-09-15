@@ -29,14 +29,14 @@ class HBNBCommand(cmd.Cmd):
             if len(args) == 2:
                 cmd = f"{args[1]} {args[0]}"
                 if len(parenthesis) > 2:
-                     tokens = re.split(r'\{[^}]*\}', parenthesis)
-                     if len(tokens) != 1:
+                    tokens = re.split(r'\{[^}]*\}', parenthesis)
+                    if len(tokens) != 1:
                         diction = re.search(r'\{[^}]*\}', parenthesis).group(0)
                         parenthesis = tokens[0][1:-2]
                         cmd = f"{cmd} {(parenthesis)} {diction}"
                         return cmd
-                     parenthesis = parenthesis[1:-1].split(", ")
-                     cmd = f"{cmd} {' '.join(parenthesis)}"
+                    parenthesis = parenthesis[1:-1].split(", ")
+                    cmd = f"{cmd} {' '.join(parenthesis)}"
                 return cmd
             return line
         else:
@@ -61,8 +61,8 @@ class HBNBCommand(cmd.Cmd):
             return
         cls_name = args[0]
         classes = {"User": User, "BaseModel": BaseModel, "State": State,
-                    "City": City, "Amenity": Amenity, "Place": Place,
-                     "Review": Review}
+                   "City": City, "Amenity": Amenity, "Place": Place,
+                   "Review": Review}
         if cls_name not in classes:
             print("** class doesn't exist **")
             return
@@ -79,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
             return
         cls_name = args[0]
         classes = ["User", "BaseModel", "State", "City", "Amenity",
-                    "Place", "Review"]
+                   "Place", "Review"]
         if cls_name not in classes:
             print("** class doesn't exist **")
             return
@@ -87,11 +87,11 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         id = args[1]
-        ##getting the list of all objects
+        # getting the list of all objects
         dictionary = storage.all()
         key = f"{cls_name}.{id}"
         if key in dictionary:
-            ##dictionary[key] is an object
+            # dictionary[key] is an object
             print(dictionary[key])
         else:
             print("** no instance found **")
@@ -106,21 +106,21 @@ class HBNBCommand(cmd.Cmd):
             return
         cls_name = args[0]
         classes = ["User", "BaseModel", "State", "City", "Amenity",
-                    "Place", "Review"]
+                   "Place", "Review"]
         if cls_name not in classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
             print("** instance id missing **")
             return
-        ##getting the list of all objects
+        # getting the list of all objects
         id = args[1]
         dictionary = storage.all()
         key = f"{cls_name}.{id}"
         if key in dictionary:
-            ##dictionary[key] is the object
-            del(dictionary[key])
-            ##now delete the key from the dictionary
+            # dictionary[key] is the object
+            del (dictionary[key])
+            # now delete the key from the dictionary
             storage.save()
         else:
             print("** no instance found **")
@@ -133,15 +133,15 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 1:
             cls_name = args[0]
             classes = ["User", "BaseModel", "State", "City", "Amenity",
-                        "Place", "Review"]
+                       "Place", "Review"]
             if cls_name not in classes:
                 print("** class doesn't exist **")
                 return
-            ##getting the list of all objects
+            # getting the list of all objects
             dictionary = storage.all()
             list_obj = []
             for key in dictionary:
-                ##dictionary[key] is an object
+                # dictionary[key] is an object
                 if dictionary[key].__class__.__name__ == cls_name:
                     list_obj.append(str(dictionary[key]))
             print(list_obj)
@@ -151,7 +151,7 @@ class HBNBCommand(cmd.Cmd):
             for key in dictionary:
                 list_obj.append(str(dictionary[key]))
             print(list_obj)
-    
+
     def do_update(self, line):
         """updates obj
         update <class name> <id> <attribute name> "<attribute value>"""
@@ -162,7 +162,7 @@ class HBNBCommand(cmd.Cmd):
             return
         cls_name = args[0]
         cls_list = ["User", "BaseModel", "State", "City", "Amenity",
-                     "Place", "Review"]
+                    "Place", "Review"]
         if cls_name not in cls_list:
             print("** class doesn't exist **")
             return
@@ -196,7 +196,7 @@ class HBNBCommand(cmd.Cmd):
                 return
             val = args[3]
             self.upd(obj, attr, val)
-    
+
     def upd(self, obj, attr, val):
         """update"""
         if hasattr(obj, attr):
@@ -210,11 +210,11 @@ class HBNBCommand(cmd.Cmd):
         else:
             setattr(obj, attr, val)
         obj.save()
-    
+
     def do_EOF(self, line):
         """quit the program"""
         return True
-    
+
     def do_quit(self, line):
         """quit the program"""
         return True
