@@ -1289,6 +1289,700 @@ class TestHBNBCommand(unittest.TestCase):
             obj.onecmd(f"all No")
             output = f.getvalue().strip()
             self.assertEqual("** class doesn't exist **", output)
+    
+    def test_do_update_Base(self):
+        """test update"""
+        id = ""
+        cls1_name = "BaseModel"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} name "mariam ibrahim"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+    
+    def test_do_update_Base2(self):
+        """test update"""
+        id = ""
+        cls1_name = "BaseModel"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, name, "mariam ibrahim")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+    
+    def test_do_update_Base3(self):
+        """test update"""
+        id = ""
+        cls1_name = "BaseModel"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            attr_val = {"name": "mariam ibrahim"}
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, {str(attr_val)})'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+    
+    def test_do_update_Base4(self):
+        """test update"""
+        id = ""
+        cls1_name = "BaseModel"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            attr_val = {"name": 'mariam ibrahim'}
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, {str(attr_val)})'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+
+    def test_do_update_User(self):
+        """test update"""
+        id = ""
+        cls1_name = "User"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} first_name "mariam ibrahim"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].first_name, "mariam ibrahim")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} password "mariam ibrahim"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].password, "mariam ibrahim")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} last_name "mariam ibrahim"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].last_name, "mariam ibrahim")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} email "mariam ibrahim"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].email, "mariam ibrahim")
+    
+    def test_do_update_User2(self):
+        """test update"""
+        id = ""
+        cls1_name = "User"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, first_name, "mariam ibrahim")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].first_name, "mariam ibrahim")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, last_name, "mariam ibrahim")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].last_name, "mariam ibrahim")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, email, "mariam ibrahim")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].email, "mariam ibrahim")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, password, "mariam ibrahim")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].password, "mariam ibrahim")
+
+    def test_do_update_User3(self):
+        """test update"""
+        id = ""
+        cls1_name = "User"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            attr_val = {"first_name": "mariam ibrahim", "last_name": "nimo mohamed",
+                        "email": "lol", "password": "hi"}
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, {str(attr_val)})'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].first_name, "mariam ibrahim")
+            self.assertEqual(dictionary[key].last_name, "nimo mohamed")
+            self.assertEqual(dictionary[key].email, "lol")
+            self.assertEqual(dictionary[key].password, "hi")
+    
+    def test_do_update_Amen(self):
+        """test update"""
+        id = ""
+        cls1_name = "Amenity"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} name "mariam ibrahim"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+
+    def test_do_update_Amen2(self):
+        """test update"""
+        id = ""
+        cls1_name = "Amenity"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, name, "mariam ibrahim")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+
+    def test_do_update_Amen3(self):
+        """test update"""
+        id = ""
+        cls1_name = "Amenity"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            attr_val = {"name": "mariam ibrahim"}
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, {str(attr_val)})'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+    
+    def test_do_update_City(self):
+        """test update"""
+        id = ""
+        cls1_name = "City"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} name "mariam ibrahim"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} state_id "989"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].state_id, "989")
+
+    def test_do_update_City2(self):
+        """test update"""
+        id = ""
+        cls1_name = "City"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, name, "mariam ibrahim")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, state_id, "989")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].state_id, "989")
+
+    def test_do_update_City3(self):
+        """test update"""
+        id = ""
+        cls1_name = "City"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            attr_val = {"name": "mariam ibrahim", "state_id": "989"}
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, {str(attr_val)})'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+            self.assertEqual(dictionary[key].state_id, "989")
+
+    def test_do_update_Place(self):
+        """test update"""
+        id = ""
+        cls1_name = "Place"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} city_id "mariam ibrahim"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].city_id, "mariam ibrahim")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} user_id "mariam ibrahim"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].user_id, "mariam ibrahim")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} name "mariam ibrahim"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} description "mar"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].description, "mar")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} number_rooms "7"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].number_rooms, 7)
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} number_rooms "7.5"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].number_rooms, 7)
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} number_bathrooms "7"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].number_bathrooms, 7)
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} number_bathrooms "7.5"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].number_bathrooms, 7)
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} max_guest "7"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].max_guest, 7)
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} max_guest "7.5"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].max_guest, 7)
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} price_by_night "7"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].price_by_night, 7)
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} price_by_night "7.5"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].price_by_night, 7)
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} latitude "7"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].latitude, 7.0)
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} longitude "7.5"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].longitude, 7.5)
+    
+    def test_do_update_Place2(self):
+        """test update"""
+        id = ""
+        cls1_name = "Place"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, city_id, "mariam")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].city_id, "mariam")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, user_id, "mariam")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].user_id, "mariam")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, name, "mariam")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].name, "mariam")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, description, "mar")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].description, "mar")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, number_rooms, "2")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].number_rooms, 2)
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, number_bathrooms, "2")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].number_bathrooms, 2)
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, max_guest, "2")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].max_guest, 2)
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, price_by_night, "2")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].price_by_night, 2)
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, latitude, "2.3")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].latitude, 2.3)
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, longitude, "2.3")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].longitude, 2.3)
+
+    def test_do_update_Place3(self):
+        """test update"""
+        id = ""
+        cls1_name = "Place"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            attr_val = {"city_id": "mariam ibrahim", "user_id": "nimo mohamed",
+                        "name": "lol", "description": "hi"}
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, {str(attr_val)})'))
+            attr_val = {"number_rooms": "9", "number_bathrooms": "2",
+                        "max_guest": "3", "price_by_night": "10.6"}
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, {str(attr_val)})'))
+            attr_val = {"latitude": "9.5", "longitude": "2.4"}
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, {str(attr_val)})'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].city_id, "mariam ibrahim")
+            self.assertEqual(dictionary[key].user_id, "nimo mohamed")
+            self.assertEqual(dictionary[key].name, "lol")
+            self.assertEqual(dictionary[key].description, "hi")
+            self.assertEqual(dictionary[key].number_rooms, 9)
+            self.assertEqual(dictionary[key].number_bathrooms, 2)
+            self.assertEqual(dictionary[key].max_guest, 3)
+            self.assertEqual(dictionary[key].price_by_night, 10)
+            self.assertEqual(dictionary[key].latitude, 9.5)
+            self.assertEqual(dictionary[key].longitude, 2.4)
+    
+    def test_do_update_Review(self):
+        """test update"""
+        id = ""
+        cls1_name = "Review"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} place_id "mari"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].place_id, "mari")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} user_id "989" e p')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].user_id, "989")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} text "hhhh"')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].text, "hhhh")
+
+    def test_do_update_Review2(self):
+        """test update"""
+        id = ""
+        cls1_name = "Review"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, place_id, "mar")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].place_id, "mar")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, user_id, "989" extra)'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].user_id, "989")
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, text, "999")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].text, "999")
+
+    def test_do_update_Review3(self):
+        """test update"""
+        id = ""
+        cls1_name = "Review"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            attr_val = {"place_id": "mariam ibrahim", "user_id": "989",
+                        "text": "hhhh"}
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, {str(attr_val)})'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].place_id, "mariam ibrahim")
+            self.assertEqual(dictionary[key].user_id, "989")
+            self.assertEqual(dictionary[key].text, "hhhh")
+    
+    def test_do_update_State(self):
+        """test update"""
+        id = ""
+        cls1_name = "State"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f'update {cls1_name} {id} name "mariam ibrahim" extra')
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+    
+    def test_do_update_State2(self):
+        """test update"""
+        id = ""
+        cls1_name = "State"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, name, "mariam ibrahim")'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+    
+    def test_do_update_State3(self):
+        """test update"""
+        id = ""
+        cls1_name = "State"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            attr_val = {"name": "mariam ibrahim"}
+            obj.onecmd(obj.precmd(f'{cls1_name}.update({id}, {str(attr_val)})'))
+            dictionary = models.storage.all()
+            key = f"{cls1_name}.{id}"
+            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+    
+
+    def test_do_update_arg1_miss(self):
+        """test update"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"update")
+            output = f.getvalue().strip()
+            self.assertEqual(output,  "** class name missing **")
+
+    def test_do_update_arg1_miss2(self):
+        """test update"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f".update()"))
+            output = f.getvalue().strip()
+            self.assertEqual(output,  "** class name missing **")
+
+    def test_do_update_arg1_incorrect(self):
+        """test update"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"update hi")
+            output = f.getvalue().strip()
+            self.assertEqual(output,  "** class doesn't exist **")
+
+    def test_do_update_arg1_incorrect2(self):
+        """test update"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f"hi.update()"))
+            output = f.getvalue().strip()
+            self.assertEqual(output,  "** class doesn't exist **")
+
+    def test_do_update_arg2_miss(self):
+        """test update"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"update BaseModel")
+            output = f.getvalue().strip()
+            self.assertEqual(output,  "** instance id missing **")
+
+    def test_do_update_arg2_miss2(self):
+        """test update"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f"BaseModel.update()"))
+            output = f.getvalue().strip()
+            self.assertEqual(output,  "** instance id missing **")
+
+    def test_do_update_arg2_incorrect(self):
+        """test update"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"update BaseModel 123")
+            output = f.getvalue().strip()
+            self.assertEqual(output,  "** no instance found **")
+
+    def test_do_update_arg2_incorrect2(self):
+        """test destroy"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f"BaseModel.update(123)"))
+            output = f.getvalue().strip()
+            self.assertEqual(output,  "** no instance found **")
+    
+    def test_do_update_arg3_miss(self):
+        """test update"""
+        id = ""
+        cls1_name = "Review"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"update Review {id}")
+            output = f.getvalue().strip()
+            self.assertEqual(output,  "** attribute name missing **")
+
+    def test_do_update_arg3_miss2(self):
+        """test update"""
+        id = ""
+        cls1_name = "Review"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f"Review.update({id})"))
+            output = f.getvalue().strip()
+            self.assertEqual(output,  "** attribute name missing **")
+    
+
+    def test_do_update_arg4_miss(self):
+        """test update"""
+        id = ""
+        cls1_name = "Review"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"update Review {id} hi")
+            output = f.getvalue().strip()
+            self.assertEqual(output,  "** value missing **")
+
+    def test_do_update_arg4_miss2(self):
+        """test update"""
+        id = ""
+        cls1_name = "Review"
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"create {cls1_name}")
+            id = f.getvalue().strip()
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(obj.precmd(f"Review.update({id}, hi)"))
+            output = f.getvalue().strip()
+            self.assertEqual(output,  "** value missing **")
+    
+    def test_invalid(self):
+        with patch('sys.stdout', new=StringIO()) as f:
+            obj = HBNBCommand()
+            obj.onecmd(f"crea")
+            output = f.getvalue().strip()
+            self.assertEqual(output,  "*** Unknown syntax: crea")
 
     def tearDown(self):
         """deallocating resources"""

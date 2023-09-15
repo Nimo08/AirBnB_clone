@@ -168,13 +168,14 @@ class HBNBCommand(cmd.Cmd):
             return
         if len(args) == 1:
             print("** instance id missing **")
+            return
         id = args[1]
         dictionary = storage.all()
         key = f"{cls_name}.{id}"
         if key not in dictionary:
             print("** no instance found **")
             return
-        if len(args) < 2:
+        if len(args) == 2:
             print("** attribute name missing **")
             return
         obj = dictionary[key]
@@ -187,35 +188,28 @@ class HBNBCommand(cmd.Cmd):
             update_dict = json.loads(attr)
             if isinstance(update_dict, dict):
                 for attr, val in update_dict.items():
-                    if hasattr(obj, attr):
-                        value = getattr(obj, attr)
-                        if type(value) is int:
-                            setattr(obj, attr, int(val))
-                        elif type(value) is float:
-                            setattr(obj, attr, float(val))
-                        else:
-                            setattr(obj, attr, val)
-                    else:
-                        setattr(obj, attr, val)
-                    obj.save()
+                    self.upd(obj, attr, val)
 
         except Exception:
             if len(args) == 3:
                 print("** value missing **")
                 return
             val = args[3]
-            if hasattr(obj, attr):
-                value = getattr(obj, attr)
-                if type(value) is int:
-                    setattr(obj, attr, int(val))
-                elif type(value) is float:
-                    setattr(obj, attr, float(val))
-                else:
-                    setattr(obj, attr, val)
+            self.upd(obj, attr, val)
+    
+    def upd(self, obj, attr, val):
+        """update"""
+        if hasattr(obj, attr):
+            value = getattr(obj, attr)
+            if type(value) is int:
+                setattr(obj, attr, int(float(val)))
+            elif type(value) is float:
+                setattr(obj, attr, float(val))
             else:
                 setattr(obj, attr, val)
-            obj.save()
-        
+        else:
+            setattr(obj, attr, val)
+        obj.save()
     
     def do_EOF(self, line):
         """quit the program"""
