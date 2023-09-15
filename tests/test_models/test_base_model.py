@@ -33,9 +33,9 @@ class test_base(unittest.TestCase):
         """should print: [<class name>] (<self.id>) <self.__dict__>"""
         my_model = BaseModel()
         rep = str(my_model)
-        class_name = re.search("\[.*\]", rep).group(0)
-        self_id = re.search("\(.{36}\)", rep).group(0)
-        self_dict = re.search("\{.*\}", rep).group(0)
+        class_name = re.search("\\[.*\\]", rep).group(0)
+        self_id = re.search("\\(.{36}\\)", rep).group(0)
+        self_dict = re.search("\\{.*\\}", rep).group(0)
         self.assertEqual(class_name, "[BaseModel]")
         self.assertTrue(len(self_id) == 38)
         inst_dict = my_model.__dict__

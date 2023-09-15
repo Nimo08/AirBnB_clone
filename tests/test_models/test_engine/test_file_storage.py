@@ -45,49 +45,49 @@ class TestFileStorage(unittest.TestCase):
         all_objs = models.storage.all()
         key = f"{obj.__class__.__name__}.{obj.id}"
         self.assertEqual(all_objs[key], obj)
-    
+
     def test_new_User(self):
         """testing new"""
         obj = User()
         all_objs = models.storage.all()
         key = f"{obj.__class__.__name__}.{obj.id}"
         self.assertEqual(all_objs[key], obj)
-    
+
     def test_new_Amenity(self):
         """testing new"""
         obj = Amenity()
         all_objs = models.storage.all()
         key = f"{obj.__class__.__name__}.{obj.id}"
         self.assertEqual(all_objs[key], obj)
-    
+
     def test_new_City(self):
         """testing new"""
         obj = City()
         all_objs = models.storage.all()
         key = f"{obj.__class__.__name__}.{obj.id}"
         self.assertEqual(all_objs[key], obj)
-    
+
     def test_new_Place(self):
         """testing new"""
         obj = Place()
         all_objs = models.storage.all()
         key = f"{obj.__class__.__name__}.{obj.id}"
         self.assertEqual(all_objs[key], obj)
-    
+
     def test_new_Review(self):
         """testing new"""
         obj = Review()
         all_objs = models.storage.all()
         key = f"{obj.__class__.__name__}.{obj.id}"
         self.assertEqual(all_objs[key], obj)
-    
+
     def test_new_State(self):
         """testing new"""
         obj = State()
         all_objs = models.storage.all()
         key = f"{obj.__class__.__name__}.{obj.id}"
         self.assertEqual(all_objs[key], obj)
-    
+
     def test_new_all(self):
         """testing new"""
         obj = User()
@@ -130,7 +130,7 @@ class TestFileStorage(unittest.TestCase):
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
         self.assertEqual(len(models.storage._FileStorage__objects), 3)
-    
+
     def test_save_User(self):
         """ testing save"""
         obj1 = User()
@@ -178,7 +178,7 @@ class TestFileStorage(unittest.TestCase):
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
-    
+
     def test_save_Place(self):
         """ testing save"""
         obj1 = Place()
@@ -188,7 +188,7 @@ class TestFileStorage(unittest.TestCase):
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
-    
+
     def test_save_Review(self):
         """ testing save"""
         obj1 = Review()
@@ -198,7 +198,7 @@ class TestFileStorage(unittest.TestCase):
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
-    
+
     def test_save_State(self):
         """ testing save"""
         obj1 = State()
@@ -208,7 +208,7 @@ class TestFileStorage(unittest.TestCase):
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
-    
+
     def test_save_all(self):
         """ testing save"""
         obj1 = User()
@@ -238,7 +238,7 @@ class TestFileStorage(unittest.TestCase):
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
-    
+
     def test_reload_empty(self):
         """reload no json file"""
         models.storage.reload()
@@ -260,7 +260,7 @@ class TestFileStorage(unittest.TestCase):
             value.to_dict()
             value1_dict.append(value.to_dict())
         self.assertEqual(value_dict, value1_dict)
-    
+
     def test_reload_User(self):
         """testing reload"""
         User()
@@ -278,7 +278,7 @@ class TestFileStorage(unittest.TestCase):
             value.to_dict()
             value1_dict.append(value.to_dict())
         self.assertEqual(value_dict, value1_dict)
-    
+
     def test_reload_Amenity(self):
         """testing reload"""
         amenity = Amenity()
@@ -293,7 +293,7 @@ class TestFileStorage(unittest.TestCase):
         value1_dict = []
         value1_dict.append(obj1[key_amenity].to_dict())
         self.assertEqual(value_dict, value1_dict)
-    
+
     def test_reload_City(self):
         """testing reload"""
         city = City()
@@ -308,7 +308,7 @@ class TestFileStorage(unittest.TestCase):
         value1_dict = []
         value1_dict.append(obj1[key_city].to_dict())
         self.assertEqual(value_dict, value1_dict)
-    
+
     def test_reload_Place(self):
         """testing reload"""
         place = Place()
@@ -323,7 +323,7 @@ class TestFileStorage(unittest.TestCase):
         value1_dict = []
         value1_dict.append(obj1[key_place].to_dict())
         self.assertEqual(value_dict, value1_dict)
-    
+
     def test_reload_Review(self):
         """testing reload"""
         review = Review()
@@ -338,7 +338,7 @@ class TestFileStorage(unittest.TestCase):
         value1_dict = []
         value1_dict.append(obj1[key_review].to_dict())
         self.assertEqual(value_dict, value1_dict)
-    
+
     def test_reload_State(self):
         """testing reload"""
         state = State()
@@ -353,7 +353,7 @@ class TestFileStorage(unittest.TestCase):
         value1_dict = []
         value1_dict.append(obj1[key_state].to_dict())
         self.assertEqual(value_dict, value1_dict)
-    
+
     def test_reload_All(self):
         """testing reload"""
         user = User()
@@ -376,7 +376,8 @@ class TestFileStorage(unittest.TestCase):
         obj1 = models.storage.all()
         json_filename = "file.json"
         value_dict = []
-        key_list = [key_place, key_amenity, key_city, key_review, key_user, key_base, key_state]
+        key_list = [key_place, key_amenity, key_city, key_review, key_user,
+                    key_base, key_state]
         for key in key_list:
             value_dict.append(obj[key].to_dict())
         value1_dict = []

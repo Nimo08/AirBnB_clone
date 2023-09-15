@@ -68,9 +68,9 @@ class TestPlace(unittest.TestCase):
         """
         my_model = Place()
         rep = str(my_model)
-        class_name = re.search("\[.*\]", rep).group(0)
-        self_id = re.search("\(.{36}\)", rep).group(0)
-        self_dict = re.search("\{.*\}", rep).group(0)
+        class_name = re.search("\\[.*\\]", rep).group(0)
+        self_id = re.search("\\(.{36}\\)", rep).group(0)
+        self_dict = re.search("\\{.*\\}", rep).group(0)
         self.assertEqual(class_name, "[Place]")
         self.assertTrue(len(self_id) == 38)
         inst_dict = my_model.__dict__
@@ -83,9 +83,9 @@ class TestPlace(unittest.TestCase):
         my_model = Place()
         my_model.name = "Westlands"
         rep = str(my_model)
-        class_name = re.search("\[.*\]", rep).group(0)
-        self_id = re.search("\(.{36}\)", rep).group(0)
-        self_dict = re.search("\{.*\}", rep).group(0)
+        class_name = re.search("\\[.*\\]", rep).group(0)
+        self_id = re.search("\\(.{36}\\)", rep).group(0)
+        self_dict = re.search("\\{.*\\}", rep).group(0)
         self.assertEqual(class_name, "[Place]")
         self.assertTrue(len(self_id) == 38)
         inst_dict = my_model.__dict__
@@ -100,7 +100,6 @@ class TestPlace(unittest.TestCase):
         my_model.save()
         self.assertNotEqual(updated, my_model.updated_at)
 
-    
     def test_save_not(self):
         """
         Testing updated_at.
@@ -148,4 +147,3 @@ class TestPlace(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-

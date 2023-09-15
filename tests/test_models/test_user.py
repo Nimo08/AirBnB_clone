@@ -41,19 +41,18 @@ class test_base(unittest.TestCase):
         self.assertEqual(my_model.email, "airbnb@mail.com")
         self.assertEqual(my_model.password, "root")
 
-
     def test_str(self):
         """should print: [<class name>] (<self.id>) <self.__dict__>"""
         my_model = User()
         rep = str(my_model)
-        class_name = re.search("\[.*\]", rep).group(0)
-        self_id = re.search("\(.{36}\)", rep).group(0)
-        self_dict = re.search("\{.*\}", rep).group(0)
+        class_name = re.search("\\[.*\\]", rep).group(0)
+        self_id = re.search("\\(.{36}\\)", rep).group(0)
+        self_dict = re.search("\\{.*\\}", rep).group(0)
         self.assertEqual(class_name, "[User]")
         self.assertTrue(len(self_id) == 38)
         inst_dict = my_model.__dict__
         self.assertEqual(str(inst_dict), self_dict)
-    
+
     def test_str_no_empty(self):
         """should print: [<class name>] (<self.id>) <self.__dict__>"""
         my_model = User()
@@ -62,9 +61,9 @@ class test_base(unittest.TestCase):
         my_model.email = "airbnb@mail.com"
         my_model.password = "root"
         rep = str(my_model)
-        class_name = re.search("\[.*\]", rep).group(0)
-        self_id = re.search("\(.{36}\)", rep).group(0)
-        self_dict = re.search("\{.*\}", rep).group(0)
+        class_name = re.search("\\[.*\\]", rep).group(0)
+        self_id = re.search("\\(.{36}\\)", rep).group(0)
+        self_dict = re.search("\\{.*\\}", rep).group(0)
         self.assertEqual(class_name, "[User]")
         self.assertTrue(len(self_id) == 38)
         inst_dict = my_model.__dict__
