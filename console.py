@@ -139,14 +139,18 @@ class HBNBCommand(cmd.Cmd):
                 return
             ##getting the list of all objects
             dictionary = storage.all()
+            list_obj = []
             for key in dictionary:
                 ##dictionary[key] is an object
                 if dictionary[key].__class__.__name__ == cls_name:
-                    print(dictionary[key])
+                    list_obj.append(str(dictionary[key]))
+            print(list_obj)
         else:
             dictionary = storage.all()
+            list_obj = []
             for key in dictionary:
-                print(dictionary[key])
+                list_obj.append(str(dictionary[key]))
+            print(list_obj)
     
     def do_update(self, line):
         """updates obj
