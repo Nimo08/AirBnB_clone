@@ -36,9 +36,9 @@ class TestState(unittest.TestCase):
         """
         my_model = State()
         rep = str(my_model)
-        class_name = re.search("\[.*\]", rep).group(0)
-        self_id = re.search("\(.{36}\)", rep).group(0)
-        self_dict = re.search("\{.*\}", rep).group(0)
+        class_name = re.search("\\[.*\\]", rep).group(0)
+        self_id = re.search("\\(.{36}\\)", rep).group(0)
+        self_dict = re.search("\\{.*\\}", rep).group(0)
         self.assertEqual(class_name, "[State]")
         self.assertTrue(len(self_id) == 38)
         inst_dict = my_model.__dict__
@@ -51,9 +51,9 @@ class TestState(unittest.TestCase):
         my_model = State()
         my_model.name = "Egypt"
         rep = str(my_model)
-        class_name = re.search("\[.*\]", rep).group(0)
-        self_id = re.search("\(.{36}\)", rep).group(0)
-        self_dict = re.search("\{.*\}", rep).group(0)
+        class_name = re.search("\\[.*\\]", rep).group(0)
+        self_id = re.search("\\(.{36}\\)", rep).group(0)
+        self_dict = re.search("\\{.*\\}", rep).group(0)
         self.assertEqual(class_name, "[State]")
         self.assertTrue(len(self_id) == 38)
         inst_dict = my_model.__dict__
@@ -68,7 +68,6 @@ class TestState(unittest.TestCase):
         my_model.save()
         self.assertNotEqual(updated, my_model.updated_at)
 
-    
     def test_save_not(self):
         """
         Testing updated_at.

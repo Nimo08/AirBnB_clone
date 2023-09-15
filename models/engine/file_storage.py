@@ -43,12 +43,13 @@ class FileStorage:
                 str_rep = myfile.read()
                 objects_dict = json.loads(str_rep)
                 classes = {"User": User, "BaseModel": BaseModel,
-                        "State": State, "City": City, "Amenity": Amenity,
-                        "Place": Place, "Review": Review}
+                           "State": State, "City": City, "Amenity": Amenity,
+                           "Place": Place, "Review": Review}
                 for key in objects_dict:
-                    ##objects_dict[key] -> a dictionary -> dictionary[__class__name]
+                    """objects_dict[key] -> a dictionary ->
+                    dictionary[__class__name]"""
                     dictionary = objects_dict[key]
-                    cls_name = dictionary["__class__"]
-                    self.__objects[key] = classes[cls_name](**objects_dict[key])
+                    cls = dictionary["__class__"]
+                    self.__objects[key] = classes[cls](**objects_dict[key])
         except Exception:
             pass

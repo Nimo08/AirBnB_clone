@@ -34,28 +34,27 @@ class test_base(unittest.TestCase):
         self.assertEqual(my_model.name, "Betty")
         self.assertEqual(my_model.state_id, "hi")
 
-
     def test_str(self):
         """should print: [<class name>] (<self.id>) <self.__dict__>"""
         my_model = City()
         rep = str(my_model)
-        class_name = re.search("\[.*\]", rep).group(0)
-        self_id = re.search("\(.{36}\)", rep).group(0)
-        self_dict = re.search("\{.*\}", rep).group(0)
+        class_name = re.search("\\[.*\\]", rep).group(0)
+        self_id = re.search("\\(.{36}\\)", rep).group(0)
+        self_dict = re.search("\\{.*\\}", rep).group(0)
         self.assertEqual(class_name, "[City]")
         self.assertTrue(len(self_id) == 38)
         inst_dict = my_model.__dict__
         self.assertEqual(str(inst_dict), self_dict)
-    
+
     def test_str_no_empty(self):
         """should print: [<class name>] (<self.id>) <self.__dict__>"""
         my_model = City()
         my_model.name = "Betty"
         my_model.state_id = "hi"
         rep = str(my_model)
-        class_name = re.search("\[.*\]", rep).group(0)
-        self_id = re.search("\(.{36}\)", rep).group(0)
-        self_dict = re.search("\{.*\}", rep).group(0)
+        class_name = re.search("\\[.*\\]", rep).group(0)
+        self_id = re.search("\\(.{36}\\)", rep).group(0)
+        self_dict = re.search("\\{.*\\}", rep).group(0)
         self.assertEqual(class_name, "[City]")
         self.assertTrue(len(self_id) == 38)
         inst_dict = my_model.__dict__

@@ -30,27 +30,26 @@ class test_base(unittest.TestCase):
         my_model.name = "Betty"
         self.assertEqual(my_model.name, "Betty")
 
-
     def test_str(self):
         """should print: [<class name>] (<self.id>) <self.__dict__>"""
         my_model = Amenity()
         rep = str(my_model)
-        class_name = re.search("\[.*\]", rep).group(0)
-        self_id = re.search("\(.{36}\)", rep).group(0)
-        self_dict = re.search("\{.*\}", rep).group(0)
+        class_name = re.search("\\[.*\\]", rep).group(0)
+        self_id = re.search("\\(.{36}\\)", rep).group(0)
+        self_dict = re.search("\\{.*\\}", rep).group(0)
         self.assertEqual(class_name, "[Amenity]")
         self.assertTrue(len(self_id) == 38)
         inst_dict = my_model.__dict__
         self.assertEqual(str(inst_dict), self_dict)
-    
+
     def test_str_no_empty(self):
         """should print: [<class name>] (<self.id>) <self.__dict__>"""
         my_model = Amenity()
         my_model.name = "Betty"
         rep = str(my_model)
-        class_name = re.search("\[.*\]", rep).group(0)
-        self_id = re.search("\(.{36}\)", rep).group(0)
-        self_dict = re.search("\{.*\}", rep).group(0)
+        class_name = re.search("\\[.*\\]", rep).group(0)
+        self_id = re.search("\\(.{36}\\)", rep).group(0)
+        self_dict = re.search("\\{.*\\}", rep).group(0)
         self.assertEqual(class_name, "[Amenity]")
         self.assertTrue(len(self_id) == 38)
         inst_dict = my_model.__dict__
