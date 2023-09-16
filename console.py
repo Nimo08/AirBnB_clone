@@ -41,6 +41,10 @@ class HBNBCommand(cmd.Cmd):
             return line
         else:
             return line
+    
+    def emptyline(self):
+        """emptylien override"""
+        pass
 
     def do_count(self, line):
         """Retrieve the number of instances of a class."""
