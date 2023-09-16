@@ -19,6 +19,10 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
 
+    def onecmd(self, line: str) -> bool:
+        line = self.precmd(line)
+        return super().onecmd(line)
+
     def precmd(self, line):
         """modify user input"""
         """User.all() -> all User"""
