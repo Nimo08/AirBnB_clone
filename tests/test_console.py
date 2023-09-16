@@ -1186,10 +1186,10 @@ class TestHBNBCommand(unittest.TestCase):
             HBNBCommand().onecmd(f"create {cls1_name}")
             id = f.getvalue().strip()
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f'update {cls1_name} {id} name "mariam ibrahim"')
+            HBNBCommand().onecmd(f'update {cls1_name} {id} name "mariam"')
             dictionary = models.storage.all()
             key = f"{cls1_name}.{id}"
-            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+            self.assertEqual(dictionary[key].name, "mariam")
 
     def test_do_update_Base2(self):
         """test update"""
@@ -1240,25 +1240,25 @@ class TestHBNBCommand(unittest.TestCase):
             HBNBCommand().onecmd(f"create {cls1_name}")
             id = f.getvalue().strip()
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f'update {cls1_name} {id} first_name "mariam ibrahim"')
+            HBNBCommand().onecmd(f'update {cls1_name} {id} first_name "mar"')
             dictionary = models.storage.all()
             key = f"{cls1_name}.{id}"
-            self.assertEqual(dictionary[key].first_name, "mariam ibrahim")
+            self.assertEqual(dictionary[key].first_name, "mar")
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f'update {cls1_name} {id} password "mariam ibrahim"')
+            HBNBCommand().onecmd(f'update {cls1_name} {id} password "mar"')
             dictionary = models.storage.all()
             key = f"{cls1_name}.{id}"
-            self.assertEqual(dictionary[key].password, "mariam ibrahim")
+            self.assertEqual(dictionary[key].password, "mar")
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f'update {cls1_name} {id} last_name "mariam ibrahim"')
+            HBNBCommand().onecmd(f'update {cls1_name} {id} last_name "ma"')
             dictionary = models.storage.all()
             key = f"{cls1_name}.{id}"
-            self.assertEqual(dictionary[key].last_name, "mariam ibrahim")
+            self.assertEqual(dictionary[key].last_name, "ma")
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f'update {cls1_name} {id} email "mariam ibrahim"')
+            HBNBCommand().onecmd(f'update {cls1_name} {id} email "mar"')
             dictionary = models.storage.all()
             key = f"{cls1_name}.{id}"
-            self.assertEqual(dictionary[key].email, "mariam ibrahim")
+            self.assertEqual(dictionary[key].email, "mar")
 
     def test_do_update_User2(self):
         """test update"""
@@ -1315,10 +1315,10 @@ class TestHBNBCommand(unittest.TestCase):
             HBNBCommand().onecmd(f"create {cls1_name}")
             id = f.getvalue().strip()
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f'update {cls1_name} {id} name "mariam ibrahim"')
+            HBNBCommand().onecmd(f'update {cls1_name} {id} name "mam"')
             dictionary = models.storage.all()
             key = f"{cls1_name}.{id}"
-            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+            self.assertEqual(dictionary[key].name, "mam")
 
     def test_do_update_Amen2(self):
         """test update"""
@@ -1355,10 +1355,10 @@ class TestHBNBCommand(unittest.TestCase):
             HBNBCommand().onecmd(f"create {cls1_name}")
             id = f.getvalue().strip()
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f'update {cls1_name} {id} name "mariam ibrahim"')
+            HBNBCommand().onecmd(f'update {cls1_name} {id} name "mar"')
             dictionary = models.storage.all()
             key = f"{cls1_name}.{id}"
-            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+            self.assertEqual(dictionary[key].name, "mar")
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f'update {cls1_name} {id} state_id "989"')
             dictionary = models.storage.all()
@@ -1406,20 +1406,20 @@ class TestHBNBCommand(unittest.TestCase):
             HBNBCommand().onecmd(f"create {cls1_name}")
             id = f.getvalue().strip()
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f'update {cls1_name} {id} city_id "mariam ibrahim"')
+            HBNBCommand().onecmd(f'update {cls1_name} {id} city_id "mar"')
             dictionary = models.storage.all()
             key = f"{cls1_name}.{id}"
-            self.assertEqual(dictionary[key].city_id, "mariam ibrahim")
+            self.assertEqual(dictionary[key].city_id, "mar")
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f'update {cls1_name} {id} user_id "mariam ibrahim"')
+            HBNBCommand().onecmd(f'update {cls1_name} {id} user_id "mar"')
             dictionary = models.storage.all()
             key = f"{cls1_name}.{id}"
-            self.assertEqual(dictionary[key].user_id, "mariam ibrahim")
+            self.assertEqual(dictionary[key].user_id, "mar")
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f'update {cls1_name} {id} name "mariam ibrahim"')
+            HBNBCommand().onecmd(f'update {cls1_name} {id} name "mar"')
             dictionary = models.storage.all()
             key = f"{cls1_name}.{id}"
-            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+            self.assertEqual(dictionary[key].name, "mar")
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd(f'update {cls1_name} {id} description "mar"')
             dictionary = models.storage.all()
@@ -1435,12 +1435,14 @@ class TestHBNBCommand(unittest.TestCase):
             dictionary = models.storage.all()
             key = f"{cls1_name}.{id}"
             self.assertEqual(dictionary[key].number_rooms, 7)
-            HBNBCommand().onecmd(f'update {cls1_name} {id} number_bathrooms "7"')
+            atr = "number_bathrooms"
+            HBNBCommand().onecmd(f'update {cls1_name} {id} {atr} "7"')
             dictionary = models.storage.all()
             key = f"{cls1_name}.{id}"
             self.assertEqual(dictionary[key].number_bathrooms, 7)
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f'update {cls1_name} {id} number_bathrooms "7.5"')
+            atr = "number_bathrooms"
+            HBNBCommand().onecmd(f'update {cls1_name} {id} {atr} "7.5"')
             dictionary = models.storage.all()
             key = f"{cls1_name}.{id}"
             self.assertEqual(dictionary[key].number_bathrooms, 7)
@@ -1460,7 +1462,8 @@ class TestHBNBCommand(unittest.TestCase):
             key = f"{cls1_name}.{id}"
             self.assertEqual(dictionary[key].price_by_night, 7)
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f'update {cls1_name} {id} price_by_night "7.5"')
+            atr = "price_by_night"
+            HBNBCommand().onecmd(f'update {cls1_name} {id} {atr} "7.5"')
             dictionary = models.storage.all()
             key = f"{cls1_name}.{id}"
             self.assertEqual(dictionary[key].price_by_night, 7)
@@ -1638,10 +1641,10 @@ class TestHBNBCommand(unittest.TestCase):
             HBNBCommand().onecmd(f"create {cls1_name}")
             id = f.getvalue().strip()
         with patch('sys.stdout', new=StringIO()) as f:
-            HBNBCommand().onecmd(f'update {cls1_name} {id} name "mariam ibrahim" extra')
+            HBNBCommand().onecmd(f'update {cls1_name} {id} name "mari" extra')
             dictionary = models.storage.all()
             key = f"{cls1_name}.{id}"
-            self.assertEqual(dictionary[key].name, "mariam ibrahim")
+            self.assertEqual(dictionary[key].name, "mari")
 
     def test_do_update_State2(self):
         """test update"""
