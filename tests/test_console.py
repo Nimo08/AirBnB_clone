@@ -1951,8 +1951,7 @@ class TestHBNBCommand(unittest.TestCase):
             obj.onecmd(f"create {cls1_name}")
             id = f.getvalue().strip()
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(obj.precmd(f"Review.update({id})"))
+            HBNBCommand().onecmd(f"Review.update({id})")
             output = f.getvalue().strip()
             self.assertEqual(output,  "** attribute name missing **")
 
@@ -1961,12 +1960,10 @@ class TestHBNBCommand(unittest.TestCase):
         id = ""
         cls1_name = "Review"
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(f"create {cls1_name}")
+            HBNBCommand().onecmd(f"create {cls1_name}")
             id = f.getvalue().strip()
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(f"update Review {id} hi")
+            HBNBCommand().onecmd(f"update Review {id} hi")
             output = f.getvalue().strip()
             self.assertEqual(output,  "** value missing **")
 
@@ -1979,16 +1976,14 @@ class TestHBNBCommand(unittest.TestCase):
             obj.onecmd(f"create {cls1_name}")
             id = f.getvalue().strip()
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(obj.precmd(f"Review.update({id}, hi)"))
+            HBNBCommand().onecmd(f"Review.update({id}, hi)")
             output = f.getvalue().strip()
             self.assertEqual(output,  "** value missing **")
 
     def test_invalid(self):
         """test invalid"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(f"crea")
+            HBNBCommand().onecmd(f"crea")
             output = f.getvalue().strip()
             self.assertEqual(output,  "*** Unknown syntax: crea")
 

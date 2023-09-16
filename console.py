@@ -16,6 +16,7 @@ import json
 
 
 class HBNBCommand(cmd.Cmd):
+    """Console for the thing"""
 
     prompt = "(hbnb) "
 
