@@ -37,6 +37,26 @@ class TestFileStorage(unittest.TestCase):
         """testing initialization"""
         self.assertEqual(models.storage._FileStorage__file_path, "file.json")
 
+    def test_attr_inst(self):
+        """testing initialization"""
+        self.assertEqual(type(FileStorage()), FileStorage)
+
+    def test_attr_str_cls(self):
+        """testing initialization"""
+        self.assertEqual(type(FileStorage._FileStorage__file_path), str)
+
+    def test_attr_str_ex_cls(self):
+        """testing initialization"""
+        self.assertEqual(FileStorage._FileStorage__file_path, "file.json")
+
+    def test_attr_dict_cls(self):
+        """testing initialization"""
+        self.assertEqual(type(FileStorage._FileStorage__objects), dict)
+
+    def test_attr_empty_dict_cls(self):
+        """testing initialization"""
+        self.assertEqual(FileStorage._FileStorage__objects, {})
+
     def test_attr_dict_ex(self):
         """testing initialization"""
         obj_dict = models.storage._FileStorage__objects
@@ -50,6 +70,32 @@ class TestFileStorage(unittest.TestCase):
     def test_attr_empty_dict(self):
         """testing initialization"""
         self.assertEqual(models.storage._FileStorage__objects, {})
+
+    def test_inst_arg(self):
+        """error when calling"""
+        with self.assertRaises(TypeError):
+            FileStorage("arg")
+
+    def test_all_arg(self):
+        """error when calling"""
+        with self.assertRaises(TypeError):
+            models.storage.all("arg")
+
+    def test_new_arg(self):
+        """error when calling"""
+        my_model = BaseModel()
+        with self.assertRaises(TypeError):
+            models.storage.new(my_model, "arg")
+
+    def test_save_arg(self):
+        """error when calling"""
+        with self.assertRaises(TypeError):
+            models.storage.save("arg")
+
+    def test_reload_arg(self):
+        """error when calling"""
+        with self.assertRaises(TypeError):
+            models.storage.reload("arg")
 
     def test_all(self):
         """testing all"""
