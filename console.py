@@ -41,7 +41,7 @@ class HBNBCommand(cmd.Cmd):
             return line
         else:
             return line
-    
+
     def emptyline(self):
         """emptylien override"""
         pass
