@@ -23,6 +23,10 @@ class TestHBNBCommand(unittest.TestCase):
     """
     Contains tests for console.
     """
+    def setUp(self):
+        """allocating resources"""
+        models.storage._FileStorage__objects = {}
+
     def test_do_create_Base(self):
         """tests do_create"""
         with patch('sys.stdout', new=StringIO()) as f:
