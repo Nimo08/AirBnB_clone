@@ -131,6 +131,7 @@ class TestFileStorage(unittest.TestCase):
     def test_new_User(self):
         """testing new"""
         obj = User()
+        models.storage.new(obj)
         all_objs = models.storage.all()
         key = obj.__class__.__name__ + '.' + obj.id
         self.assertEqual(all_objs[key], obj)
@@ -138,6 +139,7 @@ class TestFileStorage(unittest.TestCase):
     def test_new_Amenity(self):
         """testing new"""
         obj = Amenity()
+        models.storage.new(obj)
         all_objs = models.storage.all()
         key = obj.__class__.__name__ + '.' + obj.id
         self.assertEqual(all_objs[key], obj)
@@ -145,6 +147,7 @@ class TestFileStorage(unittest.TestCase):
     def test_new_City(self):
         """testing new"""
         obj = City()
+        models.storage.new(obj)
         all_objs = models.storage.all()
         key = obj.__class__.__name__ + '.' + obj.id
         self.assertEqual(all_objs[key], obj)
@@ -152,6 +155,7 @@ class TestFileStorage(unittest.TestCase):
     def test_new_Place(self):
         """testing new"""
         obj = Place()
+        models.storage.new(obj)
         all_objs = models.storage.all()
         key = obj.__class__.__name__ + '.' + obj.id
         self.assertEqual(all_objs[key], obj)
@@ -159,6 +163,7 @@ class TestFileStorage(unittest.TestCase):
     def test_new_Review(self):
         """testing new"""
         obj = Review()
+        models.storage.new(obj)
         all_objs = models.storage.all()
         key = obj.__class__.__name__ + '.' + obj.id
         self.assertEqual(all_objs[key], obj)
@@ -166,6 +171,7 @@ class TestFileStorage(unittest.TestCase):
     def test_new_State(self):
         """testing new"""
         obj = State()
+        models.storage.new(obj)
         all_objs = models.storage.all()
         key = obj.__class__.__name__ + '.' + obj.id
         self.assertEqual(all_objs[key], obj)
