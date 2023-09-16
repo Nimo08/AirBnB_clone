@@ -87,6 +87,11 @@ class TestFileStorage(unittest.TestCase):
         with self.assertRaises(TypeError):
             models.storage.new(my_model, "arg")
 
+    def test_new_no_arg(self):
+        """error when calling"""
+        with self.assertRaises(TypeError):
+            models.storage.new()
+
     def test_save_arg(self):
         """error when calling"""
         with self.assertRaises(TypeError):
