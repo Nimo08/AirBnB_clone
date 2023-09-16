@@ -33,6 +33,16 @@ class TestFileStorage(unittest.TestCase):
         """testing initialization"""
         self.assertEqual(type(models.storage._FileStorage__file_path), str)
 
+    def test_attr_str_ex(self):
+        """testing initialization"""
+        self.assertEqual(models.storage._FileStorage__file_path, "file.json")
+
+    def test_attr_dict_ex(self):
+        """testing initialization"""
+        obj_dict = models.storage._FileStorage__objects
+        expected_dict = {}
+        self.assertEqual(models.storage._FileStorage__objects, expected_dict)
+
     def test_attr_dict(self):
         """testing initialization"""
         self.assertEqual(type(models.storage._FileStorage__objects), dict)
