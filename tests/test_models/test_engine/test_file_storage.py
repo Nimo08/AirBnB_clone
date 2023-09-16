@@ -47,6 +47,18 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(type(all_objs), dict)
         self.assertEqual(len(all_objs), 0)
 
+    def test_new_not(self):
+        """testing new"""
+        my_model = BaseModel()
+        my_model_json = my_model.__dict__.copy()
+        my_model_json["created_at"] = my_model.created_at.isoformat()
+        my_model_json["updated_at"] = my_model.updated_at.isoformat()
+        my_new_model = BaseModel(**my_model_json)
+        all_objs = models.storage.all()
+        key = f"{my_model.__class__.__name__}.{my_model.id}"
+        self.assertEqual(all_objs[key], my_model)
+        self.assertEqual(len(all_objs), 1)
+
     def test_new_BaseModel(self):
         """testing new"""
         obj = BaseModel()
