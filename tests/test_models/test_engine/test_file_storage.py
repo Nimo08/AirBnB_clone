@@ -28,8 +28,17 @@ class TestFileStorage(unittest.TestCase):
     def test_attr(self):
         """testing initialization"""
         self.assertEqual(type(models.storage), FileStorage)
+
+    def test_attr_str(self):
+        """testing initialization"""
         self.assertEqual(type(models.storage._FileStorage__file_path), str)
+
+    def test_attr_dict(self):
+        """testing initialization"""
         self.assertEqual(type(models.storage._FileStorage__objects), dict)
+
+    def test_attr_empty_dict(self):
+        """testing initialization"""
         self.assertEqual(models.storage._FileStorage__objects, {})
 
     def test_all(self):
