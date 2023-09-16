@@ -111,7 +111,7 @@ class TestFileStorage(unittest.TestCase):
         my_model_json["updated_at"] = my_model.updated_at.isoformat()
         my_new_model = BaseModel(**my_model_json)
         all_objs = models.storage.all()
-        key = f"{my_model.__class__.__name__}.{my_model.id}"
+        key = my_model.__class__.__name__ + '.' + my_model.id
         self.assertEqual(all_objs[key], my_model)
         self.assertEqual(len(all_objs), 1)
 
@@ -120,49 +120,49 @@ class TestFileStorage(unittest.TestCase):
         obj = BaseModel()
         models.storage.new(obj)
         all_objs = models.storage.all()
-        key = f"{obj.__class__.__name__}.{obj.id}"
+        key = obj.__class__.__name__ + '.' + obj.id
         self.assertEqual(all_objs[key], obj)
 
     def test_new_User(self):
         """testing new"""
         obj = User()
         all_objs = models.storage.all()
-        key = f"{obj.__class__.__name__}.{obj.id}"
+        key = obj.__class__.__name__ + '.' + obj.id
         self.assertEqual(all_objs[key], obj)
 
     def test_new_Amenity(self):
         """testing new"""
         obj = Amenity()
         all_objs = models.storage.all()
-        key = f"{obj.__class__.__name__}.{obj.id}"
+        key = obj.__class__.__name__ + '.' + obj.id
         self.assertEqual(all_objs[key], obj)
 
     def test_new_City(self):
         """testing new"""
         obj = City()
         all_objs = models.storage.all()
-        key = f"{obj.__class__.__name__}.{obj.id}"
+        key = obj.__class__.__name__ + '.' + obj.id
         self.assertEqual(all_objs[key], obj)
 
     def test_new_Place(self):
         """testing new"""
         obj = Place()
         all_objs = models.storage.all()
-        key = f"{obj.__class__.__name__}.{obj.id}"
+        key = obj.__class__.__name__ + '.' + obj.id
         self.assertEqual(all_objs[key], obj)
 
     def test_new_Review(self):
         """testing new"""
         obj = Review()
         all_objs = models.storage.all()
-        key = f"{obj.__class__.__name__}.{obj.id}"
+        key = obj.__class__.__name__ + '.' + obj.id
         self.assertEqual(all_objs[key], obj)
 
     def test_new_State(self):
         """testing new"""
         obj = State()
         all_objs = models.storage.all()
-        key = f"{obj.__class__.__name__}.{obj.id}"
+        key = obj.__class__.__name__ + '.' + obj.id
         self.assertEqual(all_objs[key], obj)
 
     def test_new_all(self):
@@ -177,31 +177,34 @@ class TestFileStorage(unittest.TestCase):
         list_objs = [obj, obj2, obj3, obj4, obj5, obj6, obj7]
         all_objs = models.storage.all()
         for ob in list_objs:
-            key = f"{ob.__class__.__name__}.{ob.id}"
+            key = ob.__class__.__name__ + '.' + ob.id
             self.assertEqual(all_objs[key], ob)
 
     def test_save_BaseModel(self):
         """ testing save"""
         obj1 = BaseModel()
         models.storage.save()
-        expected = {f"{obj1.__class__.__name__}.{obj1.id}": obj1.to_dict()}
+        key = obj1.__class__.__name__ + '.' + obj1.id
+        expected = {key: obj1.to_dict()}
         json_filename = "file.json"
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
         obj2 = BaseModel()
         models.storage.save()
-        expected = {f"{obj1.__class__.__name__}.{obj1.id}": obj1.to_dict(),
-                    f"{obj2.__class__.__name__}.{obj2.id}": obj2.to_dict()}
+        key2 = obj2.__class__.__name__ + '.' + obj2.id
+        expected = {key: obj1.to_dict(),
+                    key2: obj2.to_dict()}
         json_filename = "file.json"
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
         obj3 = BaseModel()
         models.storage.save()
-        expected = {f"{obj1.__class__.__name__}.{obj1.id}": obj1.to_dict(),
-                    f"{obj2.__class__.__name__}.{obj2.id}": obj2.to_dict(),
-                    f"{obj3.__class__.__name__}.{obj3.id}": obj3.to_dict()}
+        key3 = obj3.__class__.__name__ + '.' + obj3.id
+        expected = {key: obj1.to_dict(),
+                    key2: obj2.to_dict(),
+                    key3: obj3.to_dict()}
         json_filename = "file.json"
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
@@ -212,24 +215,27 @@ class TestFileStorage(unittest.TestCase):
         """ testing save"""
         obj1 = User()
         models.storage.save()
-        expected = {f"{obj1.__class__.__name__}.{obj1.id}": obj1.to_dict()}
+        key = obj1.__class__.__name__ + '.' + obj1.id
+        expected = {key: obj1.to_dict()}
         json_filename = "file.json"
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
         obj2 = User()
         models.storage.save()
-        expected = {f"{obj1.__class__.__name__}.{obj1.id}": obj1.to_dict(),
-                    f"{obj2.__class__.__name__}.{obj2.id}": obj2.to_dict()}
+        key2 = obj2.__class__.__name__ + '.' + obj2.id
+        expected = {key: obj1.to_dict(),
+                    key2: obj2.to_dict()}
         json_filename = "file.json"
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
         obj3 = User()
         models.storage.save()
-        expected = {f"{obj1.__class__.__name__}.{obj1.id}": obj1.to_dict(),
-                    f"{obj2.__class__.__name__}.{obj2.id}": obj2.to_dict(),
-                    f"{obj3.__class__.__name__}.{obj3.id}": obj3.to_dict()}
+        key3 = obj3.__class__.__name__ + '.' + obj3.id
+        expected = {key: obj1.to_dict(),
+                    key2: obj2.to_dict(),
+                    key3: obj3.to_dict()}
         json_filename = "file.json"
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
@@ -240,7 +246,8 @@ class TestFileStorage(unittest.TestCase):
         """ testing save"""
         obj1 = Amenity()
         models.storage.save()
-        expected = {f"{obj1.__class__.__name__}.{obj1.id}": obj1.to_dict()}
+        key = obj1.__class__.__name__ + '.' + obj1.id
+        expected = {key: obj1.to_dict()}
         json_filename = "file.json"
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
@@ -250,7 +257,8 @@ class TestFileStorage(unittest.TestCase):
         """ testing save"""
         obj1 = City()
         models.storage.save()
-        expected = {f"{obj1.__class__.__name__}.{obj1.id}": obj1.to_dict()}
+        key = obj1.__class__.__name__ + '.' + obj1.id
+        expected = {key: obj1.to_dict()}
         json_filename = "file.json"
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
@@ -260,7 +268,8 @@ class TestFileStorage(unittest.TestCase):
         """ testing save"""
         obj1 = Place()
         models.storage.save()
-        expected = {f"{obj1.__class__.__name__}.{obj1.id}": obj1.to_dict()}
+        key = obj1.__class__.__name__ + '.' + obj1.id
+        expected = {key: obj1.to_dict()}
         json_filename = "file.json"
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
@@ -270,7 +279,8 @@ class TestFileStorage(unittest.TestCase):
         """ testing save"""
         obj1 = Review()
         models.storage.save()
-        expected = {f"{obj1.__class__.__name__}.{obj1.id}": obj1.to_dict()}
+        key = obj1.__class__.__name__ + '.' + obj1.id
+        expected = {key: obj1.to_dict()}
         json_filename = "file.json"
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
@@ -280,7 +290,8 @@ class TestFileStorage(unittest.TestCase):
         """ testing save"""
         obj1 = State()
         models.storage.save()
-        expected = {f"{obj1.__class__.__name__}.{obj1.id}": obj1.to_dict()}
+        key = obj1.__class__.__name__ + '.' + obj1.id
+        expected = {key: obj1.to_dict()}
         json_filename = "file.json"
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
@@ -290,15 +301,17 @@ class TestFileStorage(unittest.TestCase):
         """ testing save"""
         obj1 = User()
         models.storage.save()
-        expected = {f"{obj1.__class__.__name__}.{obj1.id}": obj1.to_dict()}
+        key = obj1.__class__.__name__ + '.' + obj1.id
+        expected = {key: obj1.to_dict()}
         json_filename = "file.json"
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
         obj2 = BaseModel()
         models.storage.save()
-        expected = {f"{obj1.__class__.__name__}.{obj1.id}": obj1.to_dict(),
-                    f"{obj2.__class__.__name__}.{obj2.id}": obj2.to_dict()}
+        key2 = obj2.__class__.__name__ + '.' + obj2.id
+        expected = {key: obj1.to_dict(),
+                    key2: obj2.to_dict()}
         json_filename = "file.json"
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
@@ -310,7 +323,7 @@ class TestFileStorage(unittest.TestCase):
         models.storage.save()
         list_objs = [obj4, obj5, obj6, obj7]
         for ob in list_objs:
-            key = f"{ob.__class__.__name__}.{ob.id}"
+            key = ob.__class__.__name__ + '.' + ob.id
             expected[key] = ob.to_dict()
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
@@ -359,7 +372,7 @@ class TestFileStorage(unittest.TestCase):
     def test_reload_Amenity(self):
         """testing reload"""
         amenity = Amenity()
-        key_amenity = f"{amenity.__class__.__name__}.{amenity.id}"
+        key_amenity = amenity.__class__.__name__ + '.' + amenity.id
         obj = models.storage.all()
         models.storage.save()
         models.storage.reload()
@@ -374,7 +387,7 @@ class TestFileStorage(unittest.TestCase):
     def test_reload_City(self):
         """testing reload"""
         city = City()
-        key_city = f"{city.__class__.__name__}.{city.id}"
+        key_city = city.__class__.__name__ + '.' + city.id
         obj = models.storage.all()
         models.storage.save()
         models.storage.reload()
@@ -389,7 +402,7 @@ class TestFileStorage(unittest.TestCase):
     def test_reload_Place(self):
         """testing reload"""
         place = Place()
-        key_place = f"{place.__class__.__name__}.{place.id}"
+        key_place = place.__class__.__name__ + '.' + place.id
         obj = models.storage.all()
         models.storage.save()
         models.storage.reload()
@@ -404,7 +417,7 @@ class TestFileStorage(unittest.TestCase):
     def test_reload_Review(self):
         """testing reload"""
         review = Review()
-        key_review = f"{review.__class__.__name__}.{review.id}"
+        key_review = review.__class__.__name__ + '.' + review.id
         obj = models.storage.all()
         models.storage.save()
         models.storage.reload()
@@ -419,7 +432,7 @@ class TestFileStorage(unittest.TestCase):
     def test_reload_State(self):
         """testing reload"""
         state = State()
-        key_state = f"{state.__class__.__name__}.{state.id}"
+        key_state = state.__class__.__name__ + '.' + state.id
         obj = models.storage.all()
         models.storage.save()
         models.storage.reload()
@@ -440,13 +453,13 @@ class TestFileStorage(unittest.TestCase):
         obj5 = Place()
         obj6 = Review()
         obj7 = State()
-        key_base = f"{base.__class__.__name__}.{base.id}"
-        key_user = f"{user.__class__.__name__}.{user.id}"
-        key_amenity = f"{obj3.__class__.__name__}.{obj3.id}"
-        key_city = f"{obj4.__class__.__name__}.{obj4.id}"
-        key_place = f"{obj5.__class__.__name__}.{obj5.id}"
-        key_review = f"{obj6.__class__.__name__}.{obj6.id}"
-        key_state = f"{obj7.__class__.__name__}.{obj7.id}"
+        key_base = base.__class__.__name__ + '.' + base.id
+        key_user = user.__class__.__name__ + '.' + user.id
+        key_amenity = obj3.__class__.__name__ + '.' + obj3.id
+        key_city = obj4.__class__.__name__ + '.' + obj4.id
+        key_place = obj5.__class__.__name__ + '.' + obj5.id
+        key_review = obj6.__class__.__name__ + '.' + obj6.id
+        key_state = obj7.__class__.__name__ + '.' + obj7.id
         obj = models.storage.all()
         models.storage.save()
         models.storage.reload()
