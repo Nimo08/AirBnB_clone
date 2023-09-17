@@ -27,6 +27,7 @@ class TestHBNBCommand(unittest.TestCase):
         """allocating resources"""
         models.storage._FileStorage__objects = {}
 
+
     def test_do_EOF(self):
         """tests do_EOF"""
         with patch('sys.stdout', new=StringIO()) as f:
@@ -38,6 +39,89 @@ class TestHBNBCommand(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             output = HBNBCommand().onecmd(f"quit")
             self.assertTrue(output)
+
+    def test_help(self):
+        """help command"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd(f"help")
+            li1 = "Documented commands (type help <topic>):"
+            li2 = "========================================"
+            li3 = "EOF  all  count  create  destroy  help  quit  show  update"
+            expected = li1 + '\n' + li2 + '\n' + li3
+            output = f.getvalue().strip()
+            self.assertEqual(expected, output)
+
+    def test_help_help(self):
+        """help help"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd(f"help help")
+            expected1 = 'List available commands with "help" '
+            expected2 = 'or detailed help with "help cmd".'
+            expected = expected1 + expected2
+            output = f.getvalue().strip()
+            self.assertEqual(expected, output)
+
+    def test_help_eof(self):
+        """help eof"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd(f"help EOF")
+            expected = "quit the program"
+            output = f.getvalue().strip()
+            self.assertEqual(expected, output)
+
+    def test_help_quit(self):
+        """help quit"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd(f"help quit")
+            expected = "quit the program"
+            output = f.getvalue().strip()
+            self.assertEqual(expected, output)
+
+    def test_help_all(self):
+        """help all"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd(f"help all")
+            li1 = "Prints all string representation of"
+            li2 = "        all instances based or not on the class name"
+            expected = li1 + '\n' + li2
+            output = f.getvalue().strip()
+            self.assertEqual(expected, output)
+
+    def test_help_count(self):
+        """help count"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd(f"help count")
+            expected = "Retrieve the number of instances of a class."
+            output = f.getvalue().strip()
+            self.assertEqual(expected, output)
+
+    def test_help_create(self):
+        """help create"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd(f"help create")
+            expected = "creates a new instance of BaseModel"
+            output = f.getvalue().strip()
+            self.assertEqual(expected, output)
+
+    def test_help_destroy(self):
+        """help destroy"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd(f"help destroy")
+            li1 = "Deletes an instance based on the"
+            li2 = "        class name and id"
+            expected = li1 + '\n' + li2
+            output = f.getvalue().strip()
+            self.assertEqual(expected, output)
+
+    def test_help_show(self):
+        """help show"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd(f"help show")
+            li1 = "Prints the str rep of an instance based"
+            li2 = "        on the class name and id"
+            expected = li1 + '\n' + li2
+            output = f.getvalue().strip()
+            self.assertEqual(expected, output)
 
     def test_do_create_Base(self):
         """tests do_create"""
