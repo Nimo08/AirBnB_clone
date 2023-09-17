@@ -32,7 +32,7 @@ class TestHBNBCommand(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             obj = HBNBCommand()
             cls_name = "BaseModel"
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
             dictionary = models.storage.all()
             for key, value in dictionary.items():
                 expected = value.id
@@ -42,9 +42,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_create_Base2(self):
         """tests do_create"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "BaseModel"
-            obj.onecmd(obj.precmd(f"{cls_name}.create()"))
+            HBNBCommand().onecmd(f"{cls_name}.create()")
             dictionary = models.storage.all()
             for key, value in dictionary.items():
                 expected = value.id
@@ -54,9 +53,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_create_User(self):
         """tests do_create"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "User"
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
             dictionary = models.storage.all()
             for key, value in dictionary.items():
                 expected = value.id
@@ -66,9 +64,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_create_User2(self):
         """tests do_create"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "User"
-            obj.onecmd(obj.precmd(f"{cls_name}.create()"))
+            HBNBCommand().onecmd(f"{cls_name}.create()")
             dictionary = models.storage.all()
             for key, value in dictionary.items():
                 expected = value.id
@@ -78,9 +75,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_create_Amen(self):
         """tests do_create"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Amenity"
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
             dictionary = models.storage.all()
             for key, value in dictionary.items():
                 expected = value.id
@@ -90,9 +86,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_create_Amen2(self):
         """tests do_create"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Amenity"
-            obj.onecmd(obj.precmd(f"{cls_name}.create()"))
+            HBNBCommand().onecmd(f"{cls_name}.create()")
             dictionary = models.storage.all()
             for key, value in dictionary.items():
                 expected = value.id
@@ -102,9 +97,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_create_City(self):
         """tests do_create"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "City"
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
             dictionary = models.storage.all()
             for key, value in dictionary.items():
                 expected = value.id
@@ -114,9 +108,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_create_City2(self):
         """tests do_create"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "City"
-            obj.onecmd(obj.precmd(f"{cls_name}.create()"))
+            HBNBCommand().onecmd(f"{cls_name}.create()")
             dictionary = models.storage.all()
             for key, value in dictionary.items():
                 expected = value.id
@@ -126,9 +119,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_create_Place(self):
         """tests do_create"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Place"
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
             dictionary = models.storage.all()
             for key, value in dictionary.items():
                 expected = value.id
@@ -138,9 +130,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_create_Place2(self):
         """tests do_create"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Place"
-            obj.onecmd(obj.precmd(f"{cls_name}.create()"))
+            HBNBCommand().onecmd(f"{cls_name}.create()")
             dictionary = models.storage.all()
             for key, value in dictionary.items():
                 expected = value.id
@@ -150,9 +141,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_create_Review(self):
         """tests do_create"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Review"
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
             dictionary = models.storage.all()
             for key, value in dictionary.items():
                 expected = value.id
@@ -162,9 +152,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_create_Review2(self):
         """tests do_create"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Review"
-            obj.onecmd(obj.precmd(f"{cls_name}.create()"))
+            HBNBCommand().onecmd(f"{cls_name}.create()")
             dictionary = models.storage.all()
             for key, value in dictionary.items():
                 expected = value.id
@@ -174,9 +163,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_create_State(self):
         """tests do_create"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "State"
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
             dictionary = models.storage.all()
             for key, value in dictionary.items():
                 expected = value.id
@@ -186,9 +174,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_create_State2(self):
         """tests do_create"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "State"
-            obj.onecmd(obj.precmd(f"{cls_name}.create()"))
+            HBNBCommand().onecmd(f"{cls_name}.create()")
             dictionary = models.storage.all()
             for key, value in dictionary.items():
                 expected = value.id
@@ -198,17 +185,15 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_create_arg1(self):
         """tests do_create"""
         with patch('sys.stdout', new=StringIO()) as f1:
-            obj1 = HBNBCommand()
-            obj1.onecmd(f"create")
+            HBNBCommand().onecmd(f"create")
             output1 = f1.getvalue().strip()
             expected_msg1 = "** class name missing **"
             self.assertEqual(expected_msg1, output1)
 
     def test_do_create_arg2(self):
         with patch('sys.stdout', new=StringIO()) as f2:
-            obj2 = HBNBCommand()
             cls_name = "MyModel"
-            obj2.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
             output2 = f2.getvalue().strip()
             expected_msg2 = "** class doesn't exist **"
             self.assertEqual(expected_msg2, output2)
@@ -216,9 +201,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_count_empty(self):
         """tests do_count"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "User"
-            obj.onecmd(f"count {cls_name}")
+            HBNBCommand().onecmd(f"count {cls_name}")
             dictionary = models.storage.all()
             counter = 0
             for key in dictionary:
@@ -231,10 +215,9 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_count_Base(self):
         """tests do_count"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "BaseModel"
-            obj.onecmd(f"create {cls_name}")
-            obj.onecmd(f"count {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"count {cls_name}")
             dictionary = models.storage.all()
             counter = 0
             for key in dictionary:
@@ -249,10 +232,9 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_count_Base2(self):
         """tests do_count"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "User"
-            obj.onecmd(obj.precmd(f"{cls_name}.create()"))
-            obj.onecmd(obj.precmd(f"{cls_name}.count()"))
+            HBNBCommand().onecmd(f"{cls_name}.create()")
+            HBNBCommand().onecmd(f"{cls_name}.count()")
             dictionary = models.storage.all()
             counter = 0
             for key in dictionary:
@@ -267,10 +249,9 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_count_User(self):
         """tests do_count"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "User"
-            obj.onecmd(f"create {cls_name}")
-            obj.onecmd(f"count {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"count {cls_name}")
             dictionary = models.storage.all()
             counter = 0
             for key in dictionary:
@@ -285,10 +266,9 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_count_User2(self):
         """tests do_count"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "User"
-            obj.onecmd(obj.precmd(f"{cls_name}.create()"))
-            obj.onecmd(obj.precmd(f"{cls_name}.count()"))
+            HBNBCommand().onecmd(f"{cls_name}.create()")
+            HBNBCommand().onecmd(f"{cls_name}.count()")
             dictionary = models.storage.all()
             counter = 0
             for key in dictionary:
@@ -303,10 +283,9 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_count_Amen(self):
         """tests do_count"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Amenity"
-            obj.onecmd(f"create {cls_name}")
-            obj.onecmd(f"count {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"count {cls_name}")
             dictionary = models.storage.all()
             counter = 0
             for key in dictionary:
@@ -321,10 +300,9 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_count_Amen2(self):
         """tests do_count"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Amenity"
-            obj.onecmd(obj.precmd(f"{cls_name}.create()"))
-            obj.onecmd(obj.precmd(f"{cls_name}.count()"))
+            HBNBCommand().onecmd(f"{cls_name}.create()")
+            HBNBCommand().onecmd(f"{cls_name}.count()")
             dictionary = models.storage.all()
             counter = 0
             for key in dictionary:
@@ -339,10 +317,9 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_count_City(self):
         """tests do_count"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "City"
-            obj.onecmd(f"create {cls_name}")
-            obj.onecmd(f"count {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"count {cls_name}")
             dictionary = models.storage.all()
             counter = 0
             for key in dictionary:
@@ -357,10 +334,9 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_count_City2(self):
         """tests do_count"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "City"
-            obj.onecmd(obj.precmd(f"{cls_name}.create()"))
-            obj.onecmd(obj.precmd(f"{cls_name}.count()"))
+            HBNBCommand().onecmd(f"{cls_name}.create()")
+            HBNBCommand().onecmd(f"{cls_name}.count()")
             dictionary = models.storage.all()
             counter = 0
             for key in dictionary:
@@ -375,10 +351,9 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_count_Place(self):
         """tests do_count"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Place"
-            obj.onecmd(f"create {cls_name}")
-            obj.onecmd(f"count {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"count {cls_name}")
             dictionary = models.storage.all()
             counter = 0
             for key in dictionary:
@@ -393,10 +368,9 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_count_Place2(self):
         """tests do_count"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Place"
-            obj.onecmd(obj.precmd(f"{cls_name}.create()"))
-            obj.onecmd(obj.precmd(f"{cls_name}.count()"))
+            HBNBCommand().onecmd(f"{cls_name}.create()")
+            HBNBCommand().onecmd(f"{cls_name}.count()")
             dictionary = models.storage.all()
             counter = 0
             for key in dictionary:
@@ -411,10 +385,9 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_count_Review(self):
         """tests do_count"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Review"
-            obj.onecmd(f"create {cls_name}")
-            obj.onecmd(f"count {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"count {cls_name}")
             dictionary = models.storage.all()
             counter = 0
             for key in dictionary:
@@ -429,10 +402,9 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_count_Review2(self):
         """tests do_count"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Review"
-            obj.onecmd(obj.precmd(f"{cls_name}.create()"))
-            obj.onecmd(obj.precmd(f"{cls_name}.count()"))
+            HBNBCommand().onecmd(f"{cls_name}.create()")
+            HBNBCommand().onecmd(f"{cls_name}.count()")
             dictionary = models.storage.all()
             counter = 0
             for key in dictionary:
@@ -447,10 +419,9 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_count_State(self):
         """tests do_count"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "State"
-            obj.onecmd(f"create {cls_name}")
-            obj.onecmd(f"count {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"count {cls_name}")
             dictionary = models.storage.all()
             counter = 0
             for key in dictionary:
@@ -465,10 +436,9 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_count_State2(self):
         """tests do_count"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "State"
-            obj.onecmd(obj.precmd(f"{cls_name}.create()"))
-            obj.onecmd(obj.precmd(f"{cls_name}.count()"))
+            HBNBCommand().onecmd(f"{cls_name}.create()")
+            HBNBCommand().onecmd(f"{cls_name}.count()")
             dictionary = models.storage.all()
             counter = 0
             for key in dictionary:
@@ -483,7 +453,6 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_show_empty(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "City"
             expected = ""
@@ -491,15 +460,14 @@ class TestHBNBCommand(unittest.TestCase):
                 if key.split('.')[0] == cls_name:
                     cls_id = value.id
                     expected = f"{cls_name} {cls_id} {str(value)}"
-                obj.onecmd(f"show {cls_name} {cls_id}")
+                HBNBCommand().onecmd(f"show {cls_name} {cls_id}")
             output = f.getvalue().strip()
             self.assertEqual(expected, output)
 
     def test_do_show_arg1(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f1:
-            obj1 = HBNBCommand()
-            obj1.onecmd(f"show")
+            HBNBCommand().onecmd(f"show")
             output1 = f1.getvalue().strip()
             expected_msg1 = "** class name missing **"
             self.assertEqual(expected_msg1, output1)
@@ -507,9 +475,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_show_arg2(self):
         """test do_show"""
         with patch('sys.stdout', new=StringIO()) as f2:
-            obj2 = HBNBCommand()
             cls_name = "MyModel"
-            obj2.onecmd(f"show {cls_name}")
+            HBNBCommand().onecmd(f"show {cls_name}")
             dictionary = models.storage.all()
             output2 = f2.getvalue().strip()
             expected_msg2 = "** class doesn't exist **"
@@ -518,9 +485,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_show_arg3(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f3:
-            obj3 = HBNBCommand()
             cls_name = "Amenity"
-            obj3.onecmd(f"show {cls_name}")
+            HBNBCommand().onecmd(f"show {cls_name}")
             dictionary = models.storage.all()
             output3 = f3.getvalue().strip()
             expected_msg3 = "** instance id missing **"
@@ -529,9 +495,8 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_show_arg4(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f4:
-            obj4 = HBNBCommand()
             cls_name = "Place"
-            obj4.onecmd(f"show {cls_name} My_First_Model")
+            HBNBCommand().onecmd(f"show {cls_name} My_First_Model")
             output4 = f4.getvalue().strip()
             expected_msg4 = "** no instance found **"
             self.assertEqual(expected_msg4, output4)
@@ -539,7 +504,6 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_show_Base(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "BaseModel"
             expected = ""
@@ -547,15 +511,14 @@ class TestHBNBCommand(unittest.TestCase):
                 if key.split('.')[0] == cls_name:
                     cls_id = value.id
                     expected = f"{cls_name} {cls_id} {str(value)}"
-                obj.onecmd(f"create {cls_name}")
-                obj.onecmd(f"show {cls_name} {cls_id}")
+                HBNBCommand().onecmd(f"create {cls_name}")
+                HBNBCommand().onecmd(f"show {cls_name} {cls_id}")
             output = f.getvalue().strip()
             self.assertEqual(expected, output)
 
     def test_do_show_Base2(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "BaseModel"
             expected = ""
@@ -563,15 +526,14 @@ class TestHBNBCommand(unittest.TestCase):
                 if key.split('.')[0] == cls_name:
                     cls_id = value.id
                     expected = f"{cls_name} {cls_id} {str(value)}"
-                obj.onecmd(obj.precmd(f"{cls_name}.create()"))
-                obj.onecmd(obj.precmd(f"{cls_name}.show({cls_id})"))
+                HBNBCommand().onecmd(f"{cls_name}.create()")
+                HBNBCommand().onecmd(f"{cls_name}.show({cls_id})")
             output = f.getvalue().strip()
             self.assertEqual(expected, output)
 
     def test_do_show_User(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "User"
             expected = ""
@@ -579,15 +541,14 @@ class TestHBNBCommand(unittest.TestCase):
                 if key.split('.')[0] == cls_name:
                     cls_id = value.id
                     expected = f"{cls_name} {cls_id} {str(value)}"
-                obj.onecmd(f"create {cls_name}")
-                obj.onecmd(f"show {cls_name} {cls_id}")
+                HBNBCommand().onecmd(f"create {cls_name}")
+                HBNBCommand().onecmd(f"show {cls_name} {cls_id}")
             output = f.getvalue().strip()
             self.assertEqual(expected, output)
 
     def test_do_show_User2(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "User"
             expected = ""
@@ -595,15 +556,14 @@ class TestHBNBCommand(unittest.TestCase):
                 if key.split('.')[0] == cls_name:
                     cls_id = value.id
                     expected = f"{cls_name} {cls_id} {str(value)}"
-                obj.onecmd(obj.precmd(f"{cls_name}.create()"))
-                obj.onecmd(obj.precmd(f"{cls_name}.show({cls_id})"))
+                HBNBCommand().onecmd(f"{cls_name}.create()")
+                HBNBCommand().onecmd(f"{cls_name}.show({cls_id})")
             output = f.getvalue().strip()
             self.assertEqual(expected, output)
 
     def test_do_show_Amen(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "Amenity"
             expected = ""
@@ -611,15 +571,14 @@ class TestHBNBCommand(unittest.TestCase):
                 if key.split('.')[0] == cls_name:
                     cls_id = value.id
                     expected = f"{cls_name} {cls_id} {str(value)}"
-                obj.onecmd(f"create {cls_name}")
-                obj.onecmd(f"show {cls_name} {cls_id}")
+                HBNBCommand().onecmd(f"create {cls_name}")
+                HBNBCommand().onecmd(f"show {cls_name} {cls_id}")
             output = f.getvalue().strip()
             self.assertEqual(expected, output)
 
     def test_do_show_Amen2(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "Amenity"
             expected = ""
@@ -627,15 +586,14 @@ class TestHBNBCommand(unittest.TestCase):
                 if key.split('.')[0] == cls_name:
                     cls_id = value.id
                     expected = f"{cls_name} {cls_id} {str(value)}"
-                obj.onecmd(obj.precmd(f"{cls_name}.create()"))
-                obj.onecmd(obj.precmd(f"{cls_name}.show({cls_id})"))
+                HBNBCommand().onecmd(f"{cls_name}.create()")
+                HBNBCommand().onecmd(f"{cls_name}.show({cls_id})")
             output = f.getvalue().strip()
             self.assertEqual(expected, output)
 
     def test_do_show_City(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "City"
             expected = ""
@@ -643,15 +601,14 @@ class TestHBNBCommand(unittest.TestCase):
                 if key.split('.')[0] == cls_name:
                     cls_id = value.id
                     expected = f"{cls_name} {cls_id} {str(value)}"
-                obj.onecmd(f"create {cls_name}")
-                obj.onecmd(f"show {cls_name} {cls_id}")
+                HBNBCommand().onecmd(f"create {cls_name}")
+                HBNBCommand().onecmd(f"show {cls_name} {cls_id}")
             output = f.getvalue().strip()
             self.assertEqual(expected, output)
 
     def test_do_show_City2(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "City"
             expected = ""
@@ -659,15 +616,14 @@ class TestHBNBCommand(unittest.TestCase):
                 if key.split('.')[0] == cls_name:
                     cls_id = value.id
                     expected = f"{cls_name} {cls_id} {str(value)}"
-                obj.onecmd(obj.precmd(f"{cls_name}.create()"))
-                obj.onecmd(obj.precmd(f"{cls_name}.show({cls_id})"))
+                HBNBCommand().onecmd(f"{cls_name}.create()")
+                HBNBCommand().onecmd(f"{cls_name}.show({cls_id})")
             output = f.getvalue().strip()
             self.assertEqual(expected, output)
 
     def test_do_show_Place(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "Place"
             expected = ""
@@ -675,15 +631,14 @@ class TestHBNBCommand(unittest.TestCase):
                 if key.split('.')[0] == cls_name:
                     cls_id = value.id
                     expected = f"{cls_name} {cls_id} {str(value)}"
-                obj.onecmd(f"create {cls_name}")
-                obj.onecmd(f"show {cls_name} {cls_id}")
+                HBNBCommand().onecmd(f"create {cls_name}")
+                HBNBCommand().onecmd(f"show {cls_name} {cls_id}")
             output = f.getvalue().strip()
             self.assertEqual(expected, output)
 
     def test_do_show_Place2(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "Place"
             expected = ""
@@ -691,15 +646,14 @@ class TestHBNBCommand(unittest.TestCase):
                 if key.split('.')[0] == cls_name:
                     cls_id = value.id
                     expected = f"{cls_name} {cls_id} {str(value)}"
-                obj.onecmd(obj.precmd(f"{cls_name}.create()"))
-                obj.onecmd(obj.precmd(f"{cls_name}.show({cls_id})"))
+                HBNBCommand().onecmd(f"{cls_name}.create()")
+                HBNBCommand().onecmd(f"{cls_name}.show({cls_id})")
             output = f.getvalue().strip()
             self.assertEqual(expected, output)
 
     def test_do_show_Review(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "Review"
             expected = ""
@@ -707,15 +661,14 @@ class TestHBNBCommand(unittest.TestCase):
                 if key.split('.')[0] == cls_name:
                     cls_id = value.id
                     expected = f"{cls_name} {cls_id} {str(value)}"
-                obj.onecmd(f"create {cls_name}")
-                obj.onecmd(f"show {cls_name} {cls_id}")
+                HBNBCommand().onecmd(f"create {cls_name}")
+                HBNBCommand().onecmd(f"show {cls_name} {cls_id}")
             output = f.getvalue().strip()
             self.assertEqual(expected, output)
 
     def test_do_show_Review2(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "Review"
             expected = ""
@@ -723,15 +676,14 @@ class TestHBNBCommand(unittest.TestCase):
                 if key.split('.')[0] == cls_name:
                     cls_id = value.id
                     expected = f"{cls_name} {cls_id} {str(value)}"
-                obj.onecmd(obj.precmd(f"{cls_name}.create()"))
-                obj.onecmd(obj.precmd(f"{cls_name}.show({cls_id})"))
+                HBNBCommand().onecmd(f"{cls_name}.create()")
+                HBNBCommand().onecmd(f"{cls_name}.show({cls_id})")
             output = f.getvalue().strip()
             self.assertEqual(expected, output)
 
     def test_do_show_State(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "State"
             expected = ""
@@ -739,15 +691,14 @@ class TestHBNBCommand(unittest.TestCase):
                 if key.split('.')[0] == cls_name:
                     cls_id = value.id
                     expected = f"{cls_name} {cls_id} {str(value)}"
-                obj.onecmd(f"create {cls_name}")
-                obj.onecmd(f"show {cls_name} {cls_id}")
+                HBNBCommand().onecmd(f"create {cls_name}")
+                HBNBCommand().onecmd(f"show {cls_name} {cls_id}")
             output = f.getvalue().strip()
             self.assertEqual(expected, output)
 
     def test_do_show_State2(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "State"
             expected = ""
@@ -755,8 +706,8 @@ class TestHBNBCommand(unittest.TestCase):
                 if key.split('.')[0] == cls_name:
                     cls_id = value.id
                     expected = f"{cls_name} {cls_id} str({value})"
-                obj.onecmd(obj.precmd(f"{cls_name}.create()"))
-                obj.onecmd(obj.precmd(f"{cls_name}.show({cls_id})"))
+                HBNBCommand().onecmd(f"{cls_name}.create()")
+                HBNBCommand().onecmd(f"{cls_name}.show({cls_id})")
             output = f.getvalue().strip()
             self.assertEqual(expected, output)
 
@@ -764,16 +715,14 @@ class TestHBNBCommand(unittest.TestCase):
         """test destroy"""
         id = ""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "BaseModel"
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
             id = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 1)
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "BaseModel"
-            obj.onecmd(f"destroy {cls_name} {id}")
+            HBNBCommand().onecmd(f"destroy {cls_name} {id}")
             output = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 0)
@@ -783,14 +732,12 @@ class TestHBNBCommand(unittest.TestCase):
         id = ""
         cls_name = "BaseModel"
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"{cls_name}.create()")
             id = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 1)
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(obj.precmd(f"{cls_name}.destroy({id})"))
+            HBNBCommand().onecmd(f"{cls_name}.destroy({id})")
             output = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 0)
@@ -799,16 +746,14 @@ class TestHBNBCommand(unittest.TestCase):
         """test destroy"""
         id = ""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "User"
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
             id = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 1)
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "User"
-            obj.onecmd(f"destroy {cls_name} {id}")
+            HBNBCommand().onecmd(f"destroy {cls_name} {id}")
             output = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 0)
@@ -818,14 +763,12 @@ class TestHBNBCommand(unittest.TestCase):
         id = ""
         cls_name = "User"
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"{cls_name}.create()")
             id = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 1)
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(obj.precmd(f"{cls_name}.destroy({id})"))
+            HBNBCommand().onecmd(f"{cls_name}.destroy({id})")
             output = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 0)
@@ -834,16 +777,14 @@ class TestHBNBCommand(unittest.TestCase):
         """test destroy"""
         id = ""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Amenity"
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
             id = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 1)
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Amenity"
-            obj.onecmd(f"destroy {cls_name} {id}")
+            HBNBCommand().onecmd(f"destroy {cls_name} {id}")
             output = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 0)
@@ -853,14 +794,12 @@ class TestHBNBCommand(unittest.TestCase):
         id = ""
         cls_name = "Amenity"
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"{cls_name}.create()")
             id = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 1)
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(obj.precmd(f"{cls_name}.destroy({id})"))
+            HBNBCommand().onecmd(f"{cls_name}.destroy({id})")
             output = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 0)
@@ -869,16 +808,14 @@ class TestHBNBCommand(unittest.TestCase):
         """test destroy"""
         id = ""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "City"
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
             id = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 1)
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "City"
-            obj.onecmd(f"destroy {cls_name} {id}")
+            HBNBCommand().onecmd(f"destroy {cls_name} {id}")
             output = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 0)
@@ -888,14 +825,12 @@ class TestHBNBCommand(unittest.TestCase):
         id = ""
         cls_name = "City"
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"{cls_name}.create()")
             id = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 1)
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(obj.precmd(f"{cls_name}.destroy({id})"))
+            HBNBCommand().onecmd(f"{cls_name}.destroy({id})")
             output = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 0)
@@ -904,16 +839,14 @@ class TestHBNBCommand(unittest.TestCase):
         """test destroy"""
         id = ""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Place"
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
             id = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 1)
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Place"
-            obj.onecmd(f"destroy {cls_name} {id}")
+            HBNBCommand().onecmd(f"destroy {cls_name} {id}")
             output = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 0)
@@ -923,14 +856,12 @@ class TestHBNBCommand(unittest.TestCase):
         id = ""
         cls_name = "Place"
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"{cls_name}.create()")
             id = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 1)
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(obj.precmd(f"{cls_name}.destroy({id})"))
+            HBNBCommand().onecmd(f"{cls_name}.destroy({id})")
             output = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 0)
@@ -939,16 +870,14 @@ class TestHBNBCommand(unittest.TestCase):
         """test destroy"""
         id = ""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Review"
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
             id = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 1)
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "Review"
-            obj.onecmd(f"destroy {cls_name} {id}")
+            HBNBCommand().onecmd(f"destroy {cls_name} {id}")
             output = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 0)
@@ -958,14 +887,12 @@ class TestHBNBCommand(unittest.TestCase):
         id = ""
         cls_name = "BaseModel"
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"{cls_name}.create()")
             id = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 1)
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(obj.precmd(f"{cls_name}.destroy({id})"))
+            HBNBCommand().onecmd(f"{cls_name}.destroy({id})")
             output = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 0)
@@ -974,16 +901,14 @@ class TestHBNBCommand(unittest.TestCase):
         """test destroy"""
         id = ""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "State"
-            obj.onecmd(f"create {cls_name}")
+            HBNBCommand().onecmd(f"create {cls_name}")
             id = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 1)
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             cls_name = "State"
-            obj.onecmd(f"destroy {cls_name} {id}")
+            HBNBCommand().onecmd(f"destroy {cls_name} {id}")
             output = f.getvalue().strip()
             dictionary = models.storage.all()
             self.assertEqual(len(dictionary), 0)
@@ -1041,8 +966,7 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_destroy_arg2_miss2(self):
         """test destroy"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(obj.precmd(f"BaseModel.destroy()"))
+            HBNBCommand().onecmd(f"BaseModel.destroy()")
             output = f.getvalue().strip()
             self.assertEqual(output,  "** instance id missing **")
 
@@ -1368,8 +1292,7 @@ class TestHBNBCommand(unittest.TestCase):
         id = ""
         cls1_name = "User"
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(f"create {cls1_name}")
+            HBNBCommand().onecmd(f"create {cls1_name}")
             id = f.getvalue().strip()
         with patch('sys.stdout', new=StringIO()) as f:
             att_val = {"first_name": "mariam", "last_name": "nimo",
