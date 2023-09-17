@@ -27,6 +27,19 @@ class TestHBNBCommand(unittest.TestCase):
         """allocating resources"""
         models.storage._FileStorage__objects = {}
 
+
+    def test_do_EOF(self):
+        """tests do_EOF"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            output = HBNBCommand().onecmd(f"EOF")
+            self.assertTrue(output)
+
+    def test_do_quit(self):
+        """tests do_quit"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            output = HBNBCommand().onecmd(f"quit")
+            self.assertTrue(output)
+
     def test_help(self):
         """help command"""
         with patch('sys.stdout', new=StringIO()) as f:
