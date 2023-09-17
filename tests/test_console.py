@@ -518,7 +518,6 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_show_Base2(self):
         """tests do_show"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
             dictionary = models.storage.all()
             cls_name = "BaseModel"
             expected = ""
@@ -966,8 +965,7 @@ class TestHBNBCommand(unittest.TestCase):
     def test_do_destroy_arg2_miss2(self):
         """test destroy"""
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(obj.precmd(f"BaseModel.destroy()"))
+            HBNBCommand().onecmd(f"BaseModel.destroy()")
             output = f.getvalue().strip()
             self.assertEqual(output,  "** instance id missing **")
 
@@ -1293,8 +1291,7 @@ class TestHBNBCommand(unittest.TestCase):
         id = ""
         cls1_name = "User"
         with patch('sys.stdout', new=StringIO()) as f:
-            obj = HBNBCommand()
-            obj.onecmd(f"create {cls1_name}")
+            HBNBCommand().onecmd(f"create {cls1_name}")
             id = f.getvalue().strip()
         with patch('sys.stdout', new=StringIO()) as f:
             att_val = {"first_name": "mariam", "last_name": "nimo",
