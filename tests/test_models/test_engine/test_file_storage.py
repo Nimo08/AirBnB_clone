@@ -196,6 +196,20 @@ class TestFileStorage(unittest.TestCase):
             key = ob.__class__.__name__ + '.' + ob.id
             self.assertEqual(all_objs[key], ob)
 
+    def test_save_BaseModel1(self):
+        """ testing save"""
+        obj1 = BaseModel()
+        models.storage.save()
+        key = obj1.__class__.__name__ + '.' + obj1.id
+        old_updated = obj1.updated_at
+        obj1.email = "hi@hi"
+        obj1.save()
+        json_filename = "file.json"
+        with open(json_filename, 'r') as f:
+            json_file = json.load(f)
+        self.assertIn(key, json_file)
+        self.assertFalse(old_updated == json_file[key]["updated_at"])
+
     def test_save_BaseModel(self):
         """ testing save"""
         obj1 = BaseModel()
@@ -226,6 +240,20 @@ class TestFileStorage(unittest.TestCase):
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
         self.assertEqual(len(models.storage._FileStorage__objects), 3)
+
+    def test_save_User1(self):
+        """ testing save"""
+        obj1 = User()
+        models.storage.save()
+        key = obj1.__class__.__name__ + '.' + obj1.id
+        old_updated = obj1.updated_at
+        obj1.email = "hi@hi"
+        obj1.save()
+        json_filename = "file.json"
+        with open(json_filename, 'r') as f:
+            json_file = json.load(f)
+        self.assertIn(key, json_file)
+        self.assertFalse(old_updated == json_file[key]["updated_at"])
 
     def test_save_User(self):
         """ testing save"""
@@ -258,6 +286,20 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(json_file, expected)
         self.assertEqual(len(models.storage._FileStorage__objects), 3)
 
+    def test_save_Amenity1(self):
+        """ testing save"""
+        obj1 = Amenity()
+        models.storage.save()
+        key = obj1.__class__.__name__ + '.' + obj1.id
+        old_updated = obj1.updated_at
+        obj1.email = "hi@hi"
+        obj1.save()
+        json_filename = "file.json"
+        with open(json_filename, 'r') as f:
+            json_file = json.load(f)
+        self.assertIn(key, json_file)
+        self.assertFalse(old_updated == json_file[key]["updated_at"])
+
     def test_save_Amenity(self):
         """ testing save"""
         obj1 = Amenity()
@@ -268,6 +310,20 @@ class TestFileStorage(unittest.TestCase):
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
+
+    def test_save_City1(self):
+        """ testing save"""
+        obj1 = City()
+        models.storage.save()
+        key = obj1.__class__.__name__ + '.' + obj1.id
+        old_updated = obj1.updated_at
+        obj1.email = "hi@hi"
+        obj1.save()
+        json_filename = "file.json"
+        with open(json_filename, 'r') as f:
+            json_file = json.load(f)
+        self.assertIn(key, json_file)
+        self.assertFalse(old_updated == json_file[key]["updated_at"])
 
     def test_save_City(self):
         """ testing save"""
@@ -280,6 +336,20 @@ class TestFileStorage(unittest.TestCase):
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
 
+    def test_save_Place1(self):
+        """ testing save"""
+        obj1 = Place()
+        models.storage.save()
+        key = obj1.__class__.__name__ + '.' + obj1.id
+        old_updated = obj1.updated_at
+        obj1.email = "hi@hi"
+        obj1.save()
+        json_filename = "file.json"
+        with open(json_filename, 'r') as f:
+            json_file = json.load(f)
+        self.assertIn(key, json_file)
+        self.assertFalse(old_updated == json_file[key]["updated_at"])
+
     def test_save_Place(self):
         """ testing save"""
         obj1 = Place()
@@ -291,6 +361,20 @@ class TestFileStorage(unittest.TestCase):
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
 
+    def test_save_Review1(self):
+        """ testing save"""
+        obj1 = Review()
+        models.storage.save()
+        key = obj1.__class__.__name__ + '.' + obj1.id
+        old_updated = obj1.updated_at
+        obj1.email = "hi@hi"
+        obj1.save()
+        json_filename = "file.json"
+        with open(json_filename, 'r') as f:
+            json_file = json.load(f)
+        self.assertIn(key, json_file)
+        self.assertFalse(old_updated == json_file[key]["updated_at"])
+
     def test_save_Review(self):
         """ testing save"""
         obj1 = Review()
@@ -301,6 +385,20 @@ class TestFileStorage(unittest.TestCase):
         with open(json_filename, 'r') as f:
             json_file = json.load(f)
         self.assertEqual(json_file, expected)
+
+    def test_save_State1(self):
+        """ testing save"""
+        obj1 = State()
+        models.storage.save()
+        key = obj1.__class__.__name__ + '.' + obj1.id
+        old_updated = obj1.updated_at
+        obj1.email = "hi@hi"
+        obj1.save()
+        json_filename = "file.json"
+        with open(json_filename, 'r') as f:
+            json_file = json.load(f)
+        self.assertIn(key, json_file)
+        self.assertFalse(old_updated == json_file[key]["updated_at"])
 
     def test_save_State(self):
         """ testing save"""
