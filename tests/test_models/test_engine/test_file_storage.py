@@ -476,7 +476,7 @@ class TestFileStorage(unittest.TestCase):
     def test_reload_BaseModel(self):
         """testing reload"""
         BaseModel()
-        obj = models.storage.all()
+        obj = models.storage.all().copy()
         models.storage.save()
         models.storage.reload()
         obj1 = models.storage.all()
@@ -494,7 +494,7 @@ class TestFileStorage(unittest.TestCase):
     def test_reload_User(self):
         """testing reload"""
         User()
-        obj = models.storage.all()
+        obj = models.storage.all().copy()
         models.storage.save()
         models.storage.reload()
         obj1 = models.storage.all()
@@ -513,7 +513,7 @@ class TestFileStorage(unittest.TestCase):
         """testing reload"""
         amenity = Amenity()
         key_amenity = amenity.__class__.__name__ + '.' + amenity.id
-        obj = models.storage.all()
+        obj = models.storage.all().copy()
         models.storage.save()
         models.storage.reload()
         obj1 = models.storage.all()
@@ -528,7 +528,7 @@ class TestFileStorage(unittest.TestCase):
         """testing reload"""
         city = City()
         key_city = city.__class__.__name__ + '.' + city.id
-        obj = models.storage.all()
+        obj = models.storage.all().copy()
         models.storage.save()
         models.storage.reload()
         obj1 = models.storage.all()
@@ -543,7 +543,7 @@ class TestFileStorage(unittest.TestCase):
         """testing reload"""
         place = Place()
         key_place = place.__class__.__name__ + '.' + place.id
-        obj = models.storage.all()
+        obj = models.storage.all().copy()
         models.storage.save()
         models.storage.reload()
         obj1 = models.storage.all()
@@ -558,7 +558,7 @@ class TestFileStorage(unittest.TestCase):
         """testing reload"""
         review = Review()
         key_review = review.__class__.__name__ + '.' + review.id
-        obj = models.storage.all()
+        obj = models.storage.all().copy()
         models.storage.save()
         models.storage.reload()
         obj1 = models.storage.all()
@@ -573,7 +573,7 @@ class TestFileStorage(unittest.TestCase):
         """testing reload"""
         state = State()
         key_state = state.__class__.__name__ + '.' + state.id
-        obj = models.storage.all()
+        obj = models.storage.all().copy()
         models.storage.save()
         models.storage.reload()
         obj1 = models.storage.all()
@@ -600,7 +600,7 @@ class TestFileStorage(unittest.TestCase):
         key_place = obj5.__class__.__name__ + '.' + obj5.id
         key_review = obj6.__class__.__name__ + '.' + obj6.id
         key_state = obj7.__class__.__name__ + '.' + obj7.id
-        obj = models.storage.all()
+        obj = models.storage.all().copy()
         models.storage.save()
         models.storage.reload()
         obj1 = models.storage.all()
