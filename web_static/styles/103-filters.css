@@ -6,7 +6,6 @@
         border: 1px solid #DDDDDD;
         border-radius: 4px;
 	display: flex;
-	overflow: hidden;
 	position: relative;
 	flex-wrap: wrap;
 }       
@@ -58,8 +57,10 @@ button:hover {
 	font-size: 16px;
 	opacity: 0;
 }
-.locations:hover > .popover,
-.amenities:hover > .popover {
+.locations:hover > * {
+	opacity: 1;
+}
+.amenities:hover > * {
 	opacity: 1;
 }
 .locations .popover ul, 
