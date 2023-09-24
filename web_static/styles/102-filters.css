@@ -55,6 +55,8 @@ button:hover {
 	border-radius: 4px;
 	font-size: 16px;
 	opacity: 0;
+	z-index: 1;
+	list-style-type: none;
 }
 .locations:hover > * {
 	opacity: 1;
